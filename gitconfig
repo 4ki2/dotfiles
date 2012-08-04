@@ -1,0 +1,42 @@
+[core]
+#  pager="lv -c"
+  pager="less"
+  editor=/usr/bin/vim
+[color]
+  status=auto
+  diff=auto
+[alias]
+  a="add"
+  b="branch"
+  c="commit"
+  ca="commit --amend"
+  ch="commit -C HEAD --amend"
+  cp="cherry-pick"
+  d="diff"
+  dc="diff --cached"
+  ds="diff --cached --stat"
+  f="fsck"
+  g="gc"
+  l="log --graph"
+  ls="log --graph --stat"
+  m="merge"
+  o="checkout"
+  p="pull"
+  r="reset"
+  rs="reset --soft"
+  rh="reset --hard"
+  s="status"
+  t="tag"
+  u="push origin"
+  w="show"
+  ws="show --stat"
+  clear="stash clear"
+  list="stash list"
+  apply="stash apply"
+  pop="stash pop"
+  depth="clone --depth"
+  mod="submodule"
+  modpull="submodule foreach git pull origin master"
+[user]
+	name = 4ki2
+	email = 4ki4ki@gmail.com
