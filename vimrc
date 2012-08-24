@@ -12,25 +12,27 @@ NeoBundle 'Shougo/neobundle.vim' " required!
 NeoBundle 'Shougo/vimproc'       " recommended to install
 "# after install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
 NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
+" NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 "# vim-scripts repos
 NeoBundle 'L9'
+" NeoBundle 'simple-pairs'
 NeoBundle 'sudo.vim'
-"NeoBundle 'FuzzyFinder'
+" NeoBundle 'FuzzyFinder'
 NeoBundle 'rails.vim'
 NeoBundle 'railscasts'
 "# original repos on github(my plugins)
-NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'majutsushi/tagbar'
+"NeoBundle 'fholgado/minibufexpl.vim'
+NeoBundle 'ornicar/vim-mru'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"NeoBundle 'fholgado/minibufexpl.vim'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'ornicar/vim-mru'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'vim-ruby/vim-ruby'
 "# non github repos
 NeoBundle 'git://git.wincent.com/command-t.git'
 filetype plugin indent on " required!
@@ -52,14 +54,17 @@ let g:NERDTreeMouseMode=2 " mouse control enabled
 "# NERD_commenter options
 "let g:NERDCreateDefaultMappings=0 " disabled key mappings
 let g:NERDSpaceDelims=1 " into space
-nmap <silent> <C-_> <Plug>NERDCommenterToggle
-vmap <silent> <C-_> <Plug>NERDCommenterToggle
+" nmap <silent> <C-_> <Plug>NERDCommenterToggle
+" vmap <silent> <C-_> <Plug>NERDCommenterToggle
 
 "# neocomplcache options
 let g:neocomplcache_enable_at_startup=1
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+
+" #tagbar options
+nmap <C-l> :TagbarToggle<CR>
 
 "# my options
 syntax on
