@@ -126,4 +126,4 @@ autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=
 autocmd InsertLeave * highlight StatusLine ctermfg=White ctermbg=Blue cterm=none
 
 "# my commands
-command qq tabonly "close other tabs
+command QQ tabonly "close other tabs

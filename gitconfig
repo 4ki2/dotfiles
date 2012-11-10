@@ -8,11 +8,13 @@
   diff=auto
 [alias]
   a="add"
+  aa="add -A ."
   au="add -u"
   b="branch"
   c="commit"
   ca="commit --amend"
   ch="commit -C HEAD --amend"
+  cm="commit -m"
   cp="cherry-pick"
   d="diff"
   dc="diff --cached"
