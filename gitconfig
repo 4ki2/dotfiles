@@ -2,11 +2,13 @@
 #  pager="lv -c"
   pager="less"
   editor=/usr/bin/vim
+  excludesfile = ~/.gitignore
 [color]
   status=auto
   diff=auto
 [alias]
   a="add"
+  au="add -u"
   b="branch"
   c="commit"
   ca="commit --amend"
@@ -30,13 +32,14 @@
   u="push origin"
   w="show"
   ws="show --stat"
+  apply="stash apply"
   clear="stash clear"
   list="stash list"
-  apply="stash apply"
   pop="stash pop"
   depth="clone --depth"
   mod="submodule"
+  modinit="submodule update --init"
   modpull="submodule foreach git pull origin master"
 [user]
-	name = 4ki2
-	email = 4ki4ki@gmail.com
+  name = 4ki2
+  email = 4ki4ki@gmail.com

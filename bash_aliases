@@ -32,7 +32,6 @@ alias mv='mv -i'
 alias p='pwd'
 alias r='rails'
 alias rm='rm -i'
-alias rmf='rm -rf'
 alias s='slogin -o ServerAliveInterval=60'
 alias sa='ssh-add'
 alias v='vim'
@@ -41,4 +40,3 @@ alias vi=v
 if [ -f ~/.gitrc ]; then
     . ~/.gitrc
 fi
-

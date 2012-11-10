@@ -33,6 +33,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'kakkyz81/evervim'
 "# non github repos
 NeoBundle 'git://git.wincent.com/command-t.git'
 filetype plugin indent on " required!
@@ -63,15 +64,19 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
-" #tagbar options
+"# tagbar options
 nmap <C-l> :TagbarToggle<CR>
+
+"# evervim options
+let g:evervim_devtoken = 'S=s243:U=1fab4a3:E=1422348b21f:C=13acb978620:P=1cd:A=en-devtoken:H=c294e50a5717a9f80c99b0ecd751ceea'
 
 "# my options
 syntax on
 
 set modelines=0
 set clipboard=unnamed,autoselect
-vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
+"# require xsel
+vmap <C-c> :w !xsel -ib<CR><CR>
 
 set nu
 set hidden
@@ -121,5 +126,4 @@ autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=
 autocmd InsertLeave * highlight StatusLine ctermfg=White ctermbg=Blue cterm=none
 
 "# my commands
-command QQ tabonly "close other tabs
-
+command qq tabonly "close other tabs
