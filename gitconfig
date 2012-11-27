@@ -6,6 +6,7 @@
 [color]
   status=auto
   diff=auto
+  ui = true
 [alias]
   a="add"
   aa="add -A ."
@@ -13,18 +14,22 @@
   b="branch"
   c="commit"
   ca="commit --amend"
+  cl="clone"
+  cd="clone --depth"
   ch="commit -C HEAD --amend"
   cm="commit -m"
   cp="cherry-pick"
   d="diff"
   dc="diff --cached"
   ds="diff --cached --stat"
-  f="fsck"
-  g="gc"
+  f="fetch"
+  fs="fsck"
+  gc="gc"
   l="log --graph"
   ls="log --graph --stat"
   m="merge"
   o="checkout"
+  om="checkout master"
   p="pull"
   r="reset"
   rs="reset --soft"
@@ -38,10 +43,13 @@
   clear="stash clear"
   list="stash list"
   pop="stash pop"
-  depth="clone --depth"
   mod="submodule"
   modinit="submodule update --init"
   modpull="submodule foreach git pull origin master"
+  theirs="checkout --theirs"
+  ours="checkout --ours"
+  continue="rebase --continue"
+  abort="rebase --abort"
 [user]
   name = 4ki2
   email = 4ki4ki@gmail.com
