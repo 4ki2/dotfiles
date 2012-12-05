@@ -42,6 +42,7 @@ alias top="top -c"
 stty -ixon -ixoff
 alias v="vim"
 alias vi=v
+alias vv="vim ~/.vimrc"
 alias le="/usr/share/vim/vim73/macros/less.sh"
 alias les=le
 alias less=le
