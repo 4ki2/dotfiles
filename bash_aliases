@@ -48,6 +48,9 @@ alias les=le
 alias less=le
 alias lesss=le
 
+# make options
+export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
+
 if [ -f ~/.gitrc ]; then
     . ~/.gitrc
 fi

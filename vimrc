@@ -109,7 +109,7 @@ nnoremap <silent><C-l> :<C-u>TagbarToggle<CR>
 let g:tagbar_singleclick=1
 
 "# evervim options
-let g:evervim_devtoken = 'S=s243:U=1fab4a3:E=1422348b21f:C=13acb978620:P=1cd:A=en-devtoken:H=c294e50a5717a9f80c99b0ecd751ceea'
+let g:evervim_devtoken=$EVERNOTE_DEVTOKEN
 
 "# hz_ja.vim plugin settings
 vnoremap <silent>han  :HzjaConvert han_ascii<CR>
