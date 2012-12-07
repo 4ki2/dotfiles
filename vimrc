@@ -189,7 +189,8 @@ set fileformats=unix,dos,mac
 
 "### ime
 "# off when insert mode end
-set noimdisable
+set imdisable
+imap <silent><ESC> <ESC>:set iminsert=0<CR>
 "# off when boot
 set iminsert=0 imsearch=0
 "# off on command mode
@@ -215,8 +216,6 @@ vnoremap <silent>a <ESC>gg0vG$
 "# insert Line Feed
 nnoremap <silent>, i<CR><ESC>
 nnoremap <silent>. o<ESC>
-"# off ime when insert mode end
-inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
 "# hit x without yank
 nnoremap x "_x
 nnoremap X "_X
