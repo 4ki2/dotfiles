@@ -48,9 +48,12 @@ alias les=le
 alias less=le
 alias lesss=le
 
-# make options
+# basic environments
 export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
 
 if [ -f ~/.gitrc ]; then
     . ~/.gitrc
+fi
+if [ -f ~/.localenv ]; then
+    . ~/.localenv
 fi

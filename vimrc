@@ -141,7 +141,7 @@ set modelines=0
 "### copy and paste
 set clipboard=unnamed,autoselect
 "#! require xsel
-vnoremap <silent><C-c> :w !xsel -ib<CR><CR>
+vmap <silent><C-c> :w !xsel -ib<CR><CR>
 "set paste " if this option enabled, neocomplcache broken
 
 "### cursor and scroll
@@ -209,10 +209,10 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-"# select wheel current line
+"# select wheel current line (same shift-v)
 vnoremap <silent>v <ESC>0v$h
 "# select all
-vnoremap <silent>a <ESC>gg0vG$
+vnoremap <silent>a <ESC>ggVG
 "# insert Line Feed
 nnoremap <silent>, i<CR><ESC>
 nnoremap <silent>. o<ESC>
