@@ -43,6 +43,8 @@ stty -ixon -ixoff
 alias v="vim"
 alias vi=v
 alias vv="vim ~/.vimrc"
+alias va="vim /etc/apache2/sites-available/"
+alias vl="vim ~/.localenv"
 alias le="/usr/share/vim/vim73/macros/less.sh"
 alias les=le
 alias less=le
@@ -57,3 +59,13 @@ fi
 if [ -f ~/.localenv ]; then
     . ~/.localenv
 fi
+
+GIT_COMPLETION_PATH="/etc/bash_completion.d/git"
+if [ -f $GIT_COMPLETION_PATH ]; then
+  . $GIT_COMPLETION_PATH
+  GIT_PS1_SHOWDIRTYSTATE=true # */+ for dirty
+  GIT_PS1_SHOWSTASHSTATE=true # $ for stashes
+  GIT_PS1_SHOWUNTRACKEDFILES=true # % for untracked
+fi
+export PS1="\e[0;33m\w\e[0;91m\$(__git_ps1 ' (%s)')\e[0;96m \$\e[0m "
+

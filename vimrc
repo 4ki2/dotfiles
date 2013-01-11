@@ -1,6 +1,6 @@
 "#! require https://github.com/Shougo/neobundle.vim
 set nocompatible " be iMproved
-set mouse=a      "enable mouse use
+"set mouse=a      "enable mouse use
 
 filetype off               " required!
 filetype plugin indent off " required!
@@ -184,7 +184,7 @@ set showmatch
 "### encoding
 set encoding=utf-8
 set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,sjis,cp932,euc-jp,cp20932
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,sjis,cp932,cp20932
 set fileformats=unix,dos,mac
 
 "### ime

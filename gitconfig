@@ -48,10 +48,14 @@
   mod="submodule"
   modinit="submodule update --init"
   modpull="submodule foreach git pull origin master"
-  theirs="checkout --theirs"
+  left="checkout --ours"
   ours="checkout --ours"
-  continue="rebase --continue"
-  abort="rebase --abort"
+  right="checkout --theirs"
+  theirs="checkout --theirs"
+  cp-continue="cherry-pick --continue"
+  cp-abort="cherry-pick --abort"
+  rb-continue="rebase --continue"
+  rb-abort="rebase --abort"
 [user]
   name = 4ki2
   email = 4ki4ki@gmail.com
