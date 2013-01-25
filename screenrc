@@ -1,4 +1,4 @@
-termcapinfo xterm ti@:te@
+termcapinfo xterm* ti@:te@
 escape  ^z^z
 vbell off
 autodetach on
