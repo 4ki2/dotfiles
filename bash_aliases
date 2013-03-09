@@ -15,9 +15,10 @@ alias drx="colordiff -r --exclude='.*'"
 alias du="du -h --max-depth=1"
 alias e="exit"
 alias ex=e
+alias exi=e
 alias f="find"
 alias g="git"
-alias gems="cd $GEM_HOME/gems"
+alias gemhome="cd $GEM_HOME/gems"
 alias h="history"
 alias k="kill -9"
 alias ll="ls -al"
@@ -29,7 +30,6 @@ elif [ `uname` = "Linux" ]; then
 fi
 alias l="ls"
 alias la="ls -A"
-alias m="mysql -u root"
 alias mv="mv -i"
 alias p="pwd"
 alias r="rails"
@@ -37,6 +37,9 @@ alias rm="rm -i"
 alias s="slogin -o ServerAliveInterval=60"
 alias sa="ssh-add"
 alias top="top -c"
+
+alias reboot="sudo shutdown -r now"
+alias halt="sudo shutdown -h now"
 
 # for vim
 stty -ixon -ixoff
@@ -47,6 +50,8 @@ alias va="vim /etc/apache2/sites-available/"
 alias vh="vim /etc/hosts"
 alias vl="vim ~/.localenv"
 alias vs="vim ~/.ssh/config"
+alias sv="sudo -H vim"
+
 alias le="/usr/share/vim/vim73/macros/less.sh"
 alias les=le
 alias less=le
