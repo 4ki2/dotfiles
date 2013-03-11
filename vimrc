@@ -29,7 +29,7 @@ NeoBundle 'L9'
 NeoBundle 'sudo.vim'
 NeoBundle 'rails.vim'
 NeoBundle 'ruby-matchit'
-"NeoBundle 'railscasts' " terminal color
+NeoBundle 'railscasts' " terminal color
 
 "### original repos on github(my plugins)
 NeoBundle 'basyura/unite-rails'
@@ -157,9 +157,6 @@ set smartcase
 set ignorecase
 set hlsearch
 
-"### backspace
-set backspace=indent,eol,start
-
 "### indent
 set autoindent
 set smartindent
@@ -203,12 +200,15 @@ set showcmd
 set showmode
 set cmdheight=1
 
+"### backspace
+set backspace=indent,eol,start
+
 "### bind keymap
 "# hjkl on insert mode
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
 "# select wheel current line (same shift-v)
 vnoremap <silent>v <ESC>0v$h
 "# select all

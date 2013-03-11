@@ -7,6 +7,8 @@
   status=auto
   diff=auto
   ui = true
+[push]
+  default = simple
 [alias]
   a="add"
   aa="add -A ."
@@ -56,8 +58,3 @@
   cp-abort="cherry-pick --abort"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
-[push]
-	default = simple
-[user]
-  name = 4ki2
-  email = 4ki4ki@gmail.com

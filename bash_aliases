@@ -33,6 +33,7 @@ alias la="ls -A"
 alias mv="mv -i"
 alias p="pwd"
 alias r="rails"
+alias rake="spring rake"
 alias rm="rm -i"
 alias s="slogin -o ServerAliveInterval=60"
 alias sa="ssh-add"
@@ -74,5 +75,4 @@ if [ -f $GIT_COMPLETION_PATH ]; then
   GIT_PS1_SHOWSTASHSTATE=true # $ for stashes
   GIT_PS1_SHOWUNTRACKEDFILES=true # % for untracked
 fi
-export PS1="\e[0;33m\w\e[0;91m\$(__git_ps1 ' (%s)')\e[0;96m \$\e[0m "
-
+export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
