@@ -3,6 +3,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias b="bundle"
 alias cdl="cd && clear"
 alias cl="clear"
 alias cle=cl
@@ -18,12 +19,10 @@ alias ex=e
 alias exi=e
 alias f="find"
 alias g="git"
-alias gemhome="cd $GEM_HOME/gems"
 alias h="history"
 alias k="kill -9"
 alias ll="ls -al"
 if [ `uname` = "Darwin" ]; then
-  alias b="brew"
   alias ls="ls -G"
 elif [ `uname` = "Linux" ]; then
   alias ls="ls -F --color"
@@ -33,11 +32,14 @@ alias la="ls -A"
 alias mv="mv -i"
 alias p="pwd"
 alias r="rails"
-alias rake="spring rake"
+#alias rake="spring rake"
+#alias rspec="spring rspec"
 alias rm="rm -i"
+alias top="top -c"
+
+# for ssh
 alias s="slogin -o ServerAliveInterval=60"
 alias sa="ssh-add"
-alias top="top -c"
 
 alias reboot="sudo shutdown -r now"
 alias halt="sudo shutdown -h now"
@@ -52,6 +54,10 @@ alias vh="vim /etc/hosts"
 alias vl="vim ~/.localenv"
 alias vs="vim ~/.ssh/config"
 alias sv="sudo -H vim"
+alias svi=sv
+alias svim=sv
+export EDITOR="vim"
+export BUNDLER_EDITOR="vim"
 
 alias le="/usr/share/vim/vim73/macros/less.sh"
 alias les=le

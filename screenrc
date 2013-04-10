@@ -1,5 +1,7 @@
+termcapinfo xterm-color ti@:te@
 escape  ^z^z
 vbell off
+
 startup_message off
 autodetach on
 altscreen on
@@ -12,8 +14,3 @@ hardstatus alwayslastline "%{= Kw}[%m/%d %02c] %{KW} %-w%{= rW}%n %t%{-}%+w %=%{
 caption splitonly "%{= Kw} %?%F%{b Kr}%? %?%h%:%t (screen #%n)%? "
 
 defscrollback 10000
-
-termcapinfo linux ti@:te@
-termcapinfo rxvt ti@:te@
-termcapinfo vt100 ti@:te@
-termcapinfo xterm* ti@:te@

@@ -1,5 +1,4 @@
 # for Linux
-.*
 .#*
 \#*#
 *~
@@ -50,3 +49,4 @@ $RECYCLE.BIN/
 rerun.txt
 pickle-email-*.html
 !.keep
+!.rspec
