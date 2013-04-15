@@ -44,8 +44,6 @@ alias sa="ssh-add"
 alias reboot="sudo shutdown -r now"
 alias halt="sudo shutdown -h now"
 
-# for vim
-stty -ixon -ixoff
 alias v="vim"
 alias vi=v
 alias vv="vim ~/.vimrc"
@@ -67,6 +65,10 @@ alias lesss=le
 # basic environments
 export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
 
+# for Ctrl-Shift
+stty -ixon -ixoff
+
+# for git
 if [ -f ~/.gitrc ]; then
     . ~/.gitrc
 fi
@@ -82,3 +84,8 @@ if [ -f $GIT_COMPLETION_PATH ]; then
   GIT_PS1_SHOWUNTRACKEDFILES=true # % for untracked
 fi
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
+
+TMUX_COMPLETION_PATH="./bash_completion_tmux.sh"
+if [ -f $TMUX_COMPLETION_PATH ]; then
+  source $TMUX_COMPLETION_PATH
+fi
