@@ -27,7 +27,7 @@ NeoBundle 'Shougo/rsense'
 "### vim-scripts repos
 NeoBundle 'L9'
 NeoBundle 'sudo.vim'
-NeoBundle 'rails.vim'
+"NeoBundle 'rails.vim'
 NeoBundle 'ruby-matchit'
 NeoBundle 'railscasts' " terminal color
 
@@ -48,6 +48,11 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/vim-javascript'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'terryma/vim-multiple-cursors'
 
 "### non github repos
 NeoBundle 'git://git.wincent.com/command-t.git'
@@ -101,6 +106,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "# for NERD_commenter
 "let g:NERDCreateDefaultMappings=0 " disabled key mappings
 let g:NERDSpaceDelims=1
+nmap <Leader>c <Plug>NERDCommenterToggle
+vmap <Leader>c <Plug>NERDCommenterToggle
 " nmap <silent> <C-_> <Plug>NERDCommenterToggle
 " vmap <silent> <C-_> <Plug>NERDCommenterToggle
 

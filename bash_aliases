@@ -34,6 +34,7 @@ alias p="pwd"
 alias r="rails"
 #alias rake="spring rake"
 #alias rspec="spring rspec"
+alias rakedbreset="rake db:drop; rake db:create; rake db:migrate; rake db:test:prepare"
 alias rm="rm -i"
 alias top="top -c"
 
@@ -61,6 +62,8 @@ alias le="/usr/share/vim/vim73/macros/less.sh"
 alias les=le
 alias less=le
 alias lesss=le
+
+alias gems="gem list"
 
 # basic environments
 export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
