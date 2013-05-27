@@ -8,7 +8,7 @@
   diff=auto
   ui = true
 [push]
-  default = simple
+#  default = simple
 [alias]
   a="add"
   aa="add -A ."
