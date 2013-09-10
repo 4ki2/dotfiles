@@ -1,8 +1,10 @@
 # some more aliases
+alias reloadalias="source ~/.bash_aliases"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
 alias b="bundle"
 alias cdl="cd && clear"
 alias cl="clear"
@@ -18,7 +20,11 @@ alias e="exit"
 alias ex=e
 alias exi=e
 alias f="find"
+alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc\" -prune -o -path \"/var\" -prune -o -path \"/sys\" -prune -o -path \"/root\" -prune -o -path \"/lost+found\" -prune -o -path \"/tmp/vmware-root\" -prune -o"
+alias findroot=fr
 alias g="git"
+alias gre="grep -n"
+alias gr=gre
 alias h="history"
 alias k="kill -9"
 alias ll="ls -al"
@@ -34,7 +40,6 @@ alias p="pwd"
 alias r="rails"
 #alias rake="spring rake"
 #alias rspec="spring rspec"
-alias rakedbreset="rake db:drop; rake db:create; rake db:migrate; rake db:test:prepare"
 alias rm="rm -i"
 alias top="top -c"
 
@@ -47,11 +52,13 @@ alias halt="sudo shutdown -h now"
 
 alias v="vim"
 alias vi=v
-alias vv="vim ~/.vimrc"
-alias va="vim /etc/apache2/sites-available/"
+alias va="vim /etc/apache2"
+alias vb="vim ~/.bash_aliases"
+alias vg="vim ~/.gitconfig"
 alias vh="vim /etc/hosts"
 alias vl="vim ~/.localenv"
 alias vs="vim ~/.ssh/config"
+alias vv="vim ~/.vimrc"
 alias sv="sudo -H vim"
 alias svi=sv
 alias svim=sv
@@ -64,6 +71,11 @@ alias less=le
 alias lesss=le
 
 alias gems="gem list"
+
+alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2 |cut -d' ' -f1|grep -v 127.0.0.1"
+alias mailcatcher="mailcatcher --http-ip `ip`"
+
+alias rbenvupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
 
 # basic environments
 export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"

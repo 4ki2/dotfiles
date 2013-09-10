@@ -1,6 +1,6 @@
 [core]
 #  pager="lv -c"
-  pager="less"
+#  pager=less
   editor=/usr/bin/vim
   excludesfile = ~/.gitignore
 [color]
@@ -8,9 +8,9 @@
   diff=auto
   ui = true
 [push]
-#  default = simple
+  default = simple
 [alias]
-  a="add"
+  a="add -A"
   aa="add -A ."
   au="add -u"
   b="branch"
@@ -49,6 +49,7 @@
   list="stash list"
   pop="stash pop"
   mod="submodule"
+  modadd="submodule add"
   modinit="submodule update --init"
   modpull="submodule foreach git pull origin master"
   left="checkout --ours"

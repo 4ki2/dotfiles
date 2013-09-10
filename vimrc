@@ -68,7 +68,8 @@ nnoremap <silent><C-y> :<C-u>Unite -buffer-name=register register<CR>
 inoremap <C-u> <Esc>:Unite snippet<CR>
 
 "# neocomplcache options
-let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc = 1
 "let g:neocomplcache_max_list = 20
 "let g:neocomplcache_plugin_disable = {
 "  \ 'syntax_complete' : 1, 
