@@ -1,18 +1,17 @@
-# some more aliases
+# basic aliases
 alias reloadalias="source ~/.bash_aliases"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-alias b="bundle"
 alias cdl="cd && clear"
-alias cl="clear"
+alias cl=clear
 alias cle=cl
 alias clea=cl
 alias cler=cl
-alias cp="cp -i"
-alias d="colordiff"
+alias cp="cp -ip"
+alias d=colordiff
 alias dr="colordiff -r"
 alias drx="colordiff -r --exclude='.*'"
 alias du="du -h --max-depth=1"
@@ -23,59 +22,70 @@ alias f="find"
 alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc\" -prune -o -path \"/var\" -prune -o -path \"/sys\" -prune -o -path \"/root\" -prune -o -path \"/lost+found\" -prune -o -path \"/tmp/vmware-root\" -prune -o"
 alias findroot=fr
 alias g="git"
-alias gre="grep -n"
-alias gr=gre
+alias gr="grep -n"
+alias gre=gr
 alias h="history"
 alias k="kill -9"
-alias ll="ls -al"
+alias ll="ls -alh"
 if [ `uname` = "Darwin" ]; then
   alias ls="ls -G"
 elif [ `uname` = "Linux" ]; then
   alias ls="ls -F --color"
 fi
-alias l="ls"
+alias l=ls
 alias la="ls -A"
 alias mv="mv -i"
-alias p="pwd"
-alias r="rails"
-#alias rake="spring rake"
-#alias rspec="spring rspec"
+alias p=pwd
 alias rm="rm -i"
 alias top="top -c"
 
-# for ssh
+alias m="mysql -u root"
+
+# ssh
 alias s="slogin -o ServerAliveInterval=60"
 alias sa="ssh-add"
 
+# system
 alias reboot="sudo shutdown -r now"
 alias halt="sudo shutdown -h now"
+alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
 
-alias v="vim"
+# editor
+alias v=vim
 alias vi=v
 alias va="vim /etc/apache2"
 alias vb="vim ~/.bash_aliases"
 alias vg="vim ~/.gitconfig"
 alias vh="vim /etc/hosts"
-alias vl="vim ~/.localenv"
+alias vr="LANG=C v -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
 alias vs="vim ~/.ssh/config"
 alias vv="vim ~/.vimrc"
 alias sv="sudo -H vim"
 alias svi=sv
 alias svim=sv
-export EDITOR="vim"
-export BUNDLER_EDITOR="vim"
+export EDITOR=vim
+export BUNDLER_EDITOR=vim
 
-alias le="/usr/share/vim/vim73/macros/less.sh"
+# pager
+export PAGER=lv
+alias le=lv
 alias les=le
 alias less=le
 alias lesss=le
 
+# ruby
+alias b=bundle
+alias bu="bundle update"
+alias r=rails
+#alias rake="spring rake"
+#alias rspec="spring rspec"
 alias gems="gem list"
+alias rbenvupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
 
+# mailcatcher
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2 |cut -d' ' -f1|grep -v 127.0.0.1"
 alias mailcatcher="mailcatcher --http-ip `ip`"
-
-alias rbenvupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
+export TRUSTED_IP=127.0.0.1
 
 # basic environments
 export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
@@ -83,14 +93,10 @@ export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
 # for Ctrl-Shift
 stty -ixon -ixoff
 
-# for git
+# git
 if [ -f ~/.gitrc ]; then
-    . ~/.gitrc
+  . ~/.gitrc
 fi
-if [ -f ~/.localenv ]; then
-    . ~/.localenv
-fi
-
 GIT_COMPLETION_PATH="/etc/bash_completion.d/git"
 if [ -f $GIT_COMPLETION_PATH ]; then
   . $GIT_COMPLETION_PATH
@@ -100,7 +106,15 @@ if [ -f $GIT_COMPLETION_PATH ]; then
 fi
 export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[34m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 
+# tmux
 TMUX_COMPLETION_PATH="./bash_completion_tmux.sh"
 if [ -f $TMUX_COMPLETION_PATH ]; then
   source $TMUX_COMPLETION_PATH
+fi
+
+# local environments
+alias vl="vim ~/.localenv"
+alias reloadenv="source ~/.localenv"
+if [ -f ~/.localenv ]; then
+  . ~/.localenv
 fi

@@ -1,7 +1,7 @@
 [core]
-#  pager="lv -c"
+  pager="lv -c"
 #  pager=less
-  editor=/usr/bin/vim
+  editor=/usr/local/bin/vim
   excludesfile = ~/.gitignore
 [color]
   status=auto
@@ -50,8 +50,11 @@
   pop="stash pop"
   mod="submodule"
   modadd="submodule add"
+  moda="submodule add"
   modinit="submodule update --init"
+  modi="submodule update --init"
   modpull="submodule foreach git pull origin master"
+  modp="submodule foreach git pull origin master"
   left="checkout --ours"
   ours="checkout --ours"
   right="checkout --theirs"
@@ -60,3 +63,6 @@
   cp-abort="cherry-pick --abort"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
+#[filter "largefile"]
+#  clean = store-largefile.py
+#  smudge = load-largefile.py

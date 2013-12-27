@@ -1,156 +1,73 @@
-"#! require https://github.com/Shougo/neobundle.vim
-set nocompatible " be iMproved
-"set mouse=a      "enable mouse use
+set nocompatible " Be iMproved
 
-filetype off               " required!
-filetype plugin indent off " required!
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-"### NeoBundle creaters
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/neobundle-vim-scripts'
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-  \     'unix' : 'make -f make_unix.mak',
-  \   },
-  \ }
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-rsense'
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Recommended to install
+" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/rsense'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimshell'
 
 "### vim-scripts repos
-NeoBundle 'L9'
 NeoBundle 'sudo.vim'
 "NeoBundle 'rails.vim'
 NeoBundle 'ruby-matchit'
-NeoBundle 'railscasts' " terminal color
 
-"### original repos on github(my plugins)
-NeoBundle 'basyura/unite-rails'
-NeoBundle 'honza/snipmate-snippets'
-NeoBundle 'kakkyz81/evervim' " for evernote
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'ornicar/vim-mru'
-NeoBundle 'othree/eregex.vim'
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'taq/vim-rspec'
-NeoBundle 'thinca/vim-tabrecent'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'ujihisa/unite-rake'
+"### github (editing)
+NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'tomtom/tcomment_vim'
+
+"### github (syntax)
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'slim-template/vim-slim'
 
-"### non github repos
-NeoBundle 'git://git.wincent.com/command-t.git'
-filetype plugin indent on " required!
+filetype plugin indent on     " Required!
+"
+" Brief help
+" :NeoBundleList          - list configured bundles
+" :NeoBundleInstall(!)    - install(update) bundles
+" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+command! Nbl :NeoBundleList
+command! Nbi :NeoBundleInstall
+command! Nbu :NeoBundleInstall!
+command! Reload :source ~/.vimrc
 
-"# vimshell keymap
-nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
+" Installation check.
+NeoBundleCheck
 
-"# unite.vim keymap
-let g:unite_source_file_mru_limit = 20
-nnoremap <silent><C-h> :<C-u>Unite file_mru<CR>
-nnoremap <silent><C-y> :<C-u>Unite -buffer-name=register register<CR>
-inoremap <C-u> <Esc>:Unite snippet<CR>
 
-"# neocomplcache options
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc = 1
-"let g:neocomplcache_max_list = 20
-"let g:neocomplcache_plugin_disable = {
-"  \ 'syntax_complete' : 1, 
-"  \ }
-"let g:neocomplcache_enable_auto_select = 0
-let g:neocomplcache#sources#rsense#home_directory = '~/.vim/bundle/rsense'
-let g:rubycomplete_buffer_loading=1
-let g:rubycomplete_classes_in_global=1
-let g:rubycomplete_rails=1
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
-let g:neosnippet#enable_snipmate_compatibility = 1
-imap <C-f> <Plug>(neosnippet_expand_or_jump)
-smap <C-f> <Plug>(neosnippet_expand_or_jump)
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-"# railscast colors
-"colorscheme railscasts
-
-"# for NERDTree
-let g:NERDTreeMinimalUI=1 " simple menu
-let g:NERDTreeDirArrows=0 " file name prefixed
-let g:NERDTreeMouseMode=2 " mouse control enabled
-nnoremap <silent><C-g>      :<C-u>NERDTreeToggle<CR>
-vnoremap <silent><C-g> <Esc>:<C-u>NERDTreeToggle<CR>
-onoremap <silent><C-g>      :<C-u>NERDTreeToggle<CR>
-inoremap <silent><C-g> <Esc>:<C-u>NERDTreeToggle<CR>
-cnoremap <silent><C-g> <C-u>:<C-u>NERDTreeToggle<CR>
-"autocmd vimenter * if !argc() | NERDTree | endif " autoboot unless arguments
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " autoclose
-
-"# for NERD_commenter
-"let g:NERDCreateDefaultMappings=0 " disabled key mappings
-let g:NERDSpaceDelims=1
-nmap <Leader>c <Plug>NERDCommenterToggle
-vmap <Leader>c <Plug>NERDCommenterToggle
-" nmap <silent> <C-_> <Plug>NERDCommenterToggle
-" vmap <silent> <C-_> <Plug>NERDCommenterToggle
-
-"# tagbar options
-nnoremap <silent><C-l> :<C-u>TagbarToggle<CR>
-let g:tagbar_singleclick=1
-
-"# evervim options
-let g:evervim_devtoken=$EVERNOTE_DEVTOKEN
-
-"# hz_ja.vim plugin settings
-vnoremap <silent>han  :HzjaConvert han_ascii<CR>
-vnoremap <silent>hank :HzjaConvert han_kana<CR>
-vnoremap <silent>hana :HzjaConvert han_eisu<CR>
-vnoremap <silent>hanm :HzjaConvert han_kigou<CR>
-vnoremap <silent>hanA :Hankaku<CR>
-vnoremap <silent>zen  :HzjaConvert zen_ascii<CR>
-vnoremap <silent>zenk :HzjaConver zen_kana<CR>
-vnoremap <silent>zena :HzjaConver zen_eisu<CR>
-vnoremap <silent>zenm :HzjaConver zen_kigou<CR>
-vnoremap <silent>zenA :Zenkaku<CR>
-
-"### my options
 syntax on
 set wildmenu
 
-"### backend option
-set shortmess+=I
-set nobackup
-set noswapfile
-set hidden
-set helplang=ja
-set history=100
+"### indent
+set autoindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set smarttab
+set cindent
+set expandtab
 
-"# related comment
-set modelines=0
-
-"### copy and paste
-set clipboard=unnamed,autoselect
-"#! require xsel
-vmap <silent><C-c> :w !xsel -ib<CR><CR>
-"set paste " if this option enabled, neocomplcache broken
+"### encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,sjis,cp932,cp20932
+set fileformats=unix,dos,mac
 
 "### cursor and scroll
 set nostartofline
@@ -165,19 +82,20 @@ set smartcase
 set ignorecase
 set hlsearch
 
-"### indent
-set autoindent
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set smarttab
-set cindent
-set expandtab
+"### backend option
+set shortmess+=I
+set nobackup
+set noswapfile
+set hidden
+set helplang=ja
+set history=100
+
+"### backspace
+set backspace=indent,eol,start
 
 "### character view
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set showtabline=2
 highlight NonText ctermfg=DarkGray
 highlight SpecialKey ctermfg=DarkGray
@@ -186,20 +104,23 @@ match ZenkakuSpace /　/
 "# highlight parenthesis
 set showmatch
 
-"### encoding
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,sjis,cp932,cp20932
-set fileformats=unix,dos,mac
-
 "### ime
-"# off when insert mode end
+"# must off when insert mode end
 set imdisable
 imap <silent><ESC> <ESC>:set iminsert=0<CR>
-"# off when boot
+"# must off when boot
 set iminsert=0 imsearch=0
-"# off on command mode
+"# must off on command mode
 set noimcmdline
+
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+" tc 新しいタブを一番右に作る
+map <silent> [Tag]x :tabclose<CR>
+" tx タブを閉じる
+map <silent> [Tag]n :tabnext<CR>
+" tn 次のタブ
+map <silent> [Tag]p :tabprevious<CR>
+" tp 前のタブ
 
 "### status line and command line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
@@ -208,63 +129,123 @@ set showcmd
 set showmode
 set cmdheight=1
 
-"### backspace
-set backspace=indent,eol,start
+"### for neocomple
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"### bind keymap
-"# hjkl on insert mode
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
-"# select wheel current line (same shift-v)
-vnoremap <silent>v <ESC>0v$h
-"# select all
-vnoremap <silent>a <ESC>ggVG
-"# insert Line Feed
+"### unite
+let g:unite_enable_start_insert = 0
+
+"### vimfiler
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+let g:vimfiler_edit_action = 'open'
+let g:vimfiler_time_format = "%y/%m/%d"
+let g:vimfiler_default_columns = 'type:time'
+nnoremap <silent><F2> :<C-u>VimFilerBufferDir -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<CR>
+autocmd FileType vimfiler call s:vimfiler_my_settings()
+function! s:vimfiler_my_settings()
+  nnoremap <silent><buffer><expr> E vimfiler#do_action('tabopen')
+  unmap <buffer> t
+  unmap <buffer> T
+endfunction
+
+"### vimshell keymap
+nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
+
+"### select lines
+nnoremap <silent>vv V
+nnoremap <silent>va <ESC>ggVG
+
+"### insert Line Feed
 nnoremap <silent>, i<CR><ESC>
 nnoremap <silent>. o<ESC>
-"# hit x without yank
+
+"### hit x without yank
 nnoremap x "_x
 nnoremap X "_X
-"# hit tab key insert indent
+
+"### hit tab key insert indent
 nnoremap <silent><Tab> >>
 nnoremap <silent><S-Tab> <<
-"# multi lines indent in visual mode
+
+"### multi lines indent in visual mode
 vnoremap <silent><Tab> >gv
 vnoremap <silent><S-Tab> <gv
-"# require stty -ixon -ixoff
-nnoremap <silent><C-s> <ESC>:<C-u>w<CR>
-nnoremap <silent><C-s>s <ESC>:<C-u>w sudo:%<CR>
-nnoremap <silent><C-q> <ESC>:<C-u>q<CR>
-"# open file on cursor into new tab
-"nnoremap <silent><C-m> <ESC><C-w>gf
-"# shortcats for tab
-nnoremap <silent>tf <ESC>:<C-u>tabfirst<CR>
-nnoremap <silent>tl <ESC>:<C-u>tablast<CR>
-nnoremap <silent>tr <ESC>:<C-u>TabRecent<CR>
-nnoremap <silent>ts <ESC>:<C-u>tabs<CR>
-nnoremap <silent>tn <ESC>:<C-u>tabnew<CR>
-nnoremap <silent>tc <ESC>:<C-u>tabclose<CR>
-"# command line keybind like shell
-:cnoremap <C-a> <Home>
-:cnoremap <C-b> <Left>
-:cnoremap <C-d> <Del>
-:cnoremap <C-e> <End>
-:cnoremap <C-f> <Right>
-:cnoremap <C-n> <Down>
-:cnoremap <C-p> <Up>
-:cnoremap <Esc><C-b> <S-Left>
-:cnoremap <Esc><C-f> <S-Right>
 
 "### toggle color in vi mode
 autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=none
 autocmd InsertLeave * highlight StatusLine ctermfg=Black ctermbg=White cterm=none
 
-"### always cursor position in center
-"autocmd CursorMoved,CursorMovedI * normal! zz
+"### tab line
+function! s:SID_PREFIX() " Anywhere SID.
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2
 
-"### my commands
-command! Nbi :NeoBundleInstall
-command! Nbu :NeoBundleUpdate
-command! VR :source ~/.vimrc
+" The prefix key.
+nnoremap [Tag] <Nop>
+nmap t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+"}}}
+
