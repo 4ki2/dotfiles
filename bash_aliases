@@ -21,6 +21,8 @@ alias exi=e
 alias f="find"
 alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc\" -prune -o -path \"/var\" -prune -o -path \"/sys\" -prune -o -path \"/root\" -prune -o -path \"/lost+found\" -prune -o -path \"/tmp/vmware-root\" -prune -o"
 alias findroot=fr
+alias fc="find . -maxdepth 1"
+alias findcurrent=fc
 alias g="git"
 alias gr="grep -n"
 alias gre=gr
@@ -49,9 +51,10 @@ alias sa="ssh-add"
 alias reboot="sudo shutdown -r now"
 alias halt="sudo shutdown -h now"
 alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
+alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
 
 # editor
-alias v=vim
+alias v="vim -p"
 alias vi=v
 alias va="vim /etc/apache2"
 alias vb="vim ~/.bash_aliases"
@@ -63,6 +66,7 @@ alias vv="vim ~/.vimrc"
 alias sv="sudo -H vim"
 alias svi=sv
 alias svim=sv
+alias vimconfigure="./configure --with-features=huge --enable-cscope --enable-multibyte --enable-hangulinput --enable-fontset --enable-largefile --enable-rubyinterp=yes --enable-luainterp=yes --disable-gui --disable-selinux --disable-netbeans --disable-gpm"
 export EDITOR=vim
 export BUNDLER_EDITOR=vim
 
@@ -76,11 +80,16 @@ alias lesss=le
 # ruby
 alias b=bundle
 alias bu="bundle update"
+alias sq="bundle exec sidekiq -C config/sidekiq.yml"
 alias r=rails
 #alias rake="spring rake"
 #alias rspec="spring rspec"
-alias gems="gem list"
-alias rbenvupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
+alias gems="echo $RBENV_ROOT/versions/`ruby -v|cut -d ' ' -f 2|awk -F'p' '{print $1"-p"$2}'`/lib/ruby/gems/`ruby -v|cut -d ' ' -f 2|cut -d 'p' -f 1`/gems/"
+alias gemupdate="gem update --system; gem pristine --all"
+alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
+alias rblocal="rbenv versions"
+alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
+alias redisclear="redis-cli flushall; sudo service redis-server restart"
 
 # mailcatcher
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2 |cut -d' ' -f1|grep -v 127.0.0.1"
