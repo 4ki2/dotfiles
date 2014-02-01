@@ -1,0 +1,98 @@
+# system and consoles
+alias cl=clear
+alias cle=cl
+alias clea=cl
+alias cler=cl
+alias du="du -h --max-depth=1"
+alias e=exit
+alias ex=e
+alias exi=e
+alias h=history
+alias kk="kill -9"
+alias p=pwd
+alias s="slogin -o ServerAliveInterval=60"
+alias top="top -c"
+alias halt="sudo shutdown -h now"
+alias reboot="sudo shutdown -r now"
+alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
+alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
+stty -ixon -ixoff # for Ctrl-Shift
+
+# files
+alias cp="cp -ip"
+alias d=colordiff
+alias dr="colordiff -r"
+alias drx="colordiff -r --exclude='.*'"
+alias mv="mv -i"
+alias rm="rm -i"
+
+# ls
+alias ls="ls -F --color=auto"
+alias l="ls -C"
+alias la="ls -A"
+alias ll="ls -alh"
+
+# grep
+alias grep="grep -n --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
+alias grenv="env|grep -i"
+
+# find
+alias f=find
+alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc\" -prune -o -path \"/var\" -prune -o -path \"/sys\" -prune -o -path \"/root\" -prune -o -path \"/lost+found\" -prune -o -path \"/tmp/vmware-root\" -prune -o"
+alias findroot=fr
+alias fc="find . -maxdepth 1"
+alias findcurrent=fc
+
+# editor
+alias v="vim -p"
+alias vi=v
+alias va="vim ~/.aliases"
+alias vg="vim ~/.gitconfig"
+alias vl="vim ~/.localenv"
+alias vr="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
+alias vs="vim ~/.ssh/config"
+alias vt="vim ~/.tmux.conf"
+alias vv="vim ~/.vimrc"
+alias vz="vim ~/.zshrc"
+alias sv="sudo -H vim"
+
+# pager
+alias le=lv
+alias les=le
+alias less=le
+alias lesss=le
+
+# ruby
+alias b=bundle
+alias bu="bundle update"
+alias sq="bundle exec sidekiq -C config/sidekiq.yml"
+alias r=rails
+#alias rake="spring rake"
+#alias rspec="spring rspec"
+alias gems="echo $RBENV_ROOT/versions/`ruby -v|cut -d ' ' -f 2|awk -F'p' '{print $1"-p"$2}'`/lib/ruby/gems/`ruby -v|cut -d ' ' -f 2|cut -d 'p' -f 1`/gems/"
+alias gemupdate="gem update --system; gem pristine --all"
+alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
+alias rblocal="rbenv versions"
+alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
+alias redisclear="redis-cli flushall; sudo service redis-server restart"
+
+# mailcatcher
+alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2 |cut -d' ' -f1|grep -v 127.0.0.1"
+alias mailcatcher="mailcatcher --http-ip `ip`"
+
+# git
+alias g="git"
+if [ -f ~/.gitrc ]; then
+  . ~/.gitrc
+fi
+
+# reloader
+alias reloadrc=". ~/.zshrc"
+alias reloadalias=". ~/.aliases"
+alias reloadenv=". ~/.localenv"
+
+# configure
+alias configurevim="./configure --with-features=huge --enable-cscope --enable-multibyte --enable-hangulinput --enable-fontset --enable-largefile --enable-rubyinterp=yes --enable-luainterp=yes --disable-gui --disable-selinux --disable-netbeans --disable-gpm"
+alias configuretmux="sh autogen.sh; ./configure"

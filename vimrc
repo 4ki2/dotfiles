@@ -16,16 +16,18 @@ if system('uname -o') =~ '^GNU/'
   let g:make = 'make'
 endif
 NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/unite.vim' " for vimfiler
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimshell'
 
 "### vim-scripts repos
 NeoBundle 'sudo.vim'
-"NeoBundle 'rails.vim'
 NeoBundle 'ruby-matchit'
+
+"### github (filer)
+NeoBundle 'kien/ctrlp.vim'
 
 "### github (editing)
 NeoBundle 'terryma/vim-multiple-cursors'
@@ -34,8 +36,6 @@ NeoBundle 'tomtom/tcomment_vim'
 "### github (syntax)
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'taichouchou2/html5.vim'
-" NeoBundle 'taichouchou2/vim-rsense' " conflict neocomple.vim
-" NeoBundle 'taichouchou2/vim-rails'  " conflict neocomple.vim
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
@@ -50,10 +50,7 @@ command! Nbl :NeoBundleList
 command! Nbi :NeoBundleInstall
 command! Nbu :NeoBundleInstall!
 command! Reload :source ~/.vimrc
-
-" Installation check.
-NeoBundleCheck
-
+NeoBundleCheck " Installation check.
 
 syntax on
 set wildmenu
@@ -180,7 +177,7 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 " Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -189,10 +186,8 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-"### unite
-let g:unite_enable_start_insert = 0
-
 "### vimfiler
+let g:unite_enable_start_insert = 0
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_edit_action = 'open'
@@ -217,9 +212,17 @@ nnoremap <silent>va <ESC>ggVG
 nnoremap <silent>, i<CR><ESC>
 nnoremap <silent>. o<ESC>
 
-"### hit x without yank
+"### without yank
 nnoremap x "_x
 nnoremap X "_X
+nnoremap d "_d
+nnoremap D "_d
+nnoremap c "_c
+nnoremap C "_C
+vnoremap d "_D
+vnoremap D "_D
+vnoremap c "_c
+vnoremap C "_C
 
 "### hit tab key insert indent
 nnoremap <silent><Tab> >>
@@ -266,4 +269,3 @@ for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "}}}
-
