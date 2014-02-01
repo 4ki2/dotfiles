@@ -15,7 +15,8 @@ alias top="top -c"
 alias halt="sudo shutdown -h now"
 alias reboot="sudo shutdown -r now"
 alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
-alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
+alias aptpurge="sudo apt-get autoremove"
+#alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
 stty -ixon -ixoff # for Ctrl-Shift
 
 # files

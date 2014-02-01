@@ -3,7 +3,7 @@ export LANG=ja_JP.UTF-8
 export PAGER=lv
 export EDITOR=vim
 export BUNDLER_EDITOR=vim
-export MAKEOPTS="-j`grep -c "cpu cores" /proc/cpuinfo`"
+export MAKEOPTS="-j`egrep -c "^processor\s:\s[0-9]+$" /proc/cpuinfo`"
 
 # for zsh
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -56,8 +56,8 @@ setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 setopt prompt_subst # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify       # バックグラウンドジョブの状態変化を即時報告
 setopt equals       # =commandを`which command`と同じ処理
-setopt extended_glob
-unsetopt caseglob   # ファイルグロブで大文字小文字を区別しない
+# setopt extended_glob #サーカムフレックスが効かなくなる
+# unsetopt caseglob   # ファイルグロブで大文字小文字を区別しない
 
 # Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
