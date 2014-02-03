@@ -37,6 +37,7 @@ alias ll="ls -alh"
 alias grep="grep -n --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+alias gr="grep -Ri"
 alias grenv="env|grep -i"
 
 # find

@@ -31,7 +31,7 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
-RPROMPT="%{${fg[blue]}%}[%~]%{${reset_color}%}"
+RPROMPT="%{${fg[blue]}%}%{${reset_color}%}"
 
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -45,7 +45,7 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 autoload -U colors; colors
 
-bindkey -v # Use vi keybindings even if our EDITOR is set to emacs
+bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 
 setopt no_beep      # ビープ音
 setopt auto_cd      # ディレクトリ名の入力のみで移動
