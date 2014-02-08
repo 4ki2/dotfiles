@@ -51,13 +51,12 @@ setopt no_beep      # ビープ音
 setopt auto_cd      # ディレクトリ名の入力のみで移動
 cdpath=(.. ~ ~/src)
 setopt auto_pushd   # cd時にディレクトリスタックにpushdする
-setopt correct      # コマンドのスペルを訂正する
+# setopt correct      # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 setopt prompt_subst # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify       # バックグラウンドジョブの状態変化を即時報告
 setopt equals       # =commandを`which command`と同じ処理
-# setopt extended_glob #サーカムフレックスが効かなくなる
-# unsetopt caseglob   # ファイルグロブで大文字小文字を区別しない
+setopt nonomatch    # ファイルグロブは無効にする
 
 # Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
@@ -66,7 +65,7 @@ HISTFILE=~/.zsh_history
 setopt bang_hist          # !を使ったヒストリ展開を行う(d)
 setopt extended_history   # ヒストリに実行時間も保存する
 setopt hist_ignore_dups   # 直前と同じコマンドはヒストリに追加しない
-setopt share_history      # 他のシェルのヒストリをリアルタイムで共有する
+# setopt share_history      # 他のシェルのヒストリをリアルタイムで共有する
 # setopt hist_reduce_blanks # 余分なスペースを削除してヒストリに保存する
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
