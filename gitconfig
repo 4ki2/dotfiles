@@ -44,10 +44,6 @@
   uh="push heroku master"
   w="show"
   ws="show --stat"
-  apply="stash apply"
-  clear="stash clear"
-  list="stash list"
-  pop="stash pop"
   mod="submodule"
   modadd="submodule add"
   moda="submodule add"
@@ -63,6 +59,14 @@
   cp-abort="cherry-pick --abort"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
+  rv-continue="revert --continue"
+  rv-abort="revert --abort"
+  apply="stash apply"
+  pop="stash pop"
+  clear="stash clear"
+  drop="stash drop"
+  list="stash list"
+  view="stash show -p"
 #[filter "largefile"]
 #  clean = store-largefile.py
 #  smudge = load-largefile.py
