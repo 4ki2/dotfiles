@@ -10,12 +10,14 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
 # rbenv
 export RBENV_ROOT="${HOME}/.rbenv"
 if [ -d "${RBENV_ROOT}" ]; then
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
+  source $RBENV_ROOT/completions/rbenv.zsh
 fi
 
 # for mailcatcher
@@ -81,6 +83,10 @@ setopt auto_menu   # 補完キー連打で補完候補を順に表示(d)
 setopt list_packed # 補完候補をできるだけ詰めて表示
 setopt list_types  # 補完候補にファイルの種類も表示
 bindkey "^[[Z" reverse-menu-complete  # Shift-Tabで補完候補を逆順("\e[Z"でも動作する)
+#bindkey "^W" forward-word
+#bindkey "^B" backward-word
+setopt auto_param_slash
+setopt noautoremoveslash
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
