@@ -81,21 +81,21 @@ alias development="unset RAILS_ENV"
 alias r=rails
 alias rc="rails c"
 alias rs="rails s"
-#alias rake="spring rake"
+alias rake="spring rake"
 #alias rspec="spring rspec"
 alias redisclear="redis-cli flushall; sudo service redis-server restart"
-alias railsclear="rake assets:clean; rake tmp:clear; rake memcached:flush; rake log:clear"
+alias railsclear="rake assets:clean; rake tmp:clear; rake log:clear"
 alias resetdb="rake db:drop; rake db:create; rake db:migrate"
 alias precompile="rake assets:precompile"
 
 # ruby
 alias rv="ruby -v|cut -d' ' -f2"
-$ rch() { rbenv local $1; reloadalias }
+$ rch() { rbenv local $1; rbrehash; reloadalias }
 alias rls="rbenv versions"
 alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
 alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
 alias rbrehash="rbenv rehash"
-alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv|cut -d'p' -f1) in (1.9.3) echo 1.9.1;; (2.1.1) echo 2.1.0;; (*) rv|cut -d'p' -f1;; esac`/gems"
+alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9*) echo 1.9.1;; 2.1*) echo 2.1.0;; (*) rv|cut -d'p' -f1;; esac`/gems"
 alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
 alias gemenv="gem env"
 alias cdgems="cd `gems`"

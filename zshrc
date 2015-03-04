@@ -33,10 +33,10 @@ autoload -Uz promptinit
 promptinit
 prompt adam1
 
-RPROMPT="%{${fg[blue]}%}%{${reset_color}%}"
+# RPROMPT="%{${fg[blue]}%}%{${reset_color}%}"
 
 autoload -Uz vcs_info
-setopt prompt_subst
+setopt prompt_subst # プロンプト定義内で変数置換やコマンド置換を扱う
 zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
@@ -55,7 +55,6 @@ cdpath=(.. ~ ~/src)
 setopt auto_pushd   # cd時にディレクトリスタックにpushdする
 # setopt correct      # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
-setopt prompt_subst # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify       # バックグラウンドジョブの状態変化を即時報告
 setopt equals       # =commandを`which command`と同じ処理
 setopt nonomatch    # ファイルグロブは無効にする

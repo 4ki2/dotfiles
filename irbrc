@@ -43,7 +43,7 @@ end
 
 if defined? Rails::Console
   ActiveRecord::Base.logger = nil
-  ActiveResource::Base.logger = nil
+#  ActiveResource::Base.logger = nil
 
   def logger flg
     buff = irb_context.echo

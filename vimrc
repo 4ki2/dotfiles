@@ -1,12 +1,19 @@
-set nocompatible " Be iMproved
+ " Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
 if has('vim_starting')
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
+  if &compatible
+    set nocompatible " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
+" Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Recommended to install
@@ -21,24 +28,34 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim' " for vimfiler
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 "### vim-scripts repos
 NeoBundle 'sudo.vim'
 NeoBundle 'ruby-matchit'
 
-"### github (filer)
+"### github (filer/search)
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'tpope/vim-fugitive'
 
 "### github (editing)
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tomtom/tcomment_vim'
+"NeoBundle 'tyru/caw.vim'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-surround'
 
 "### github (syntax)
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'taichouchou2/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'othree/html5.vim'
+" NeoBundle 'scrooloose/syntastic' " 煩わしい
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'vim-scripts/AnsiEsc.vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'itchyny/lightline.vim'
 
 filetype plugin indent on     " Required!
 "
@@ -66,6 +83,7 @@ set cindent
 set expandtab
 
 "### encoding
+scriptencoding utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,sjis,cp932,cp20932
@@ -99,12 +117,20 @@ set backspace=indent,eol,start
 set list
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 set showtabline=2
-highlight NonText ctermfg=DarkGray
-highlight SpecialKey ctermfg=DarkGray
-highlight link ZenkakuSpace Error
-match ZenkakuSpace /　/
-"# highlight parenthesis
 set showmatch
+
+function! ZenkakuSpace()
+  highlight ZenkakuSpace ctermbg=Red
+endfunction
+
+if has('syntax')
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+  augroup END
+  call ZenkakuSpace()
+endif
 
 "### ime
 "# must off when insert mode end
@@ -115,17 +141,9 @@ set iminsert=0 imsearch=0
 "# must off on command mode
 set noimcmdline
 
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
-" tc 新しいタブを一番右に作る
-map <silent> [Tag]x :tabclose<CR>
-" tx タブを閉じる
-map <silent> [Tag]n :tabnext<CR>
-" tn 次のタブ
-map <silent> [Tag]p :tabprevious<CR>
-" tp 前のタブ
-
 "### status line and command line
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+" set statusline+=%{fugitive#statusline()} " add git branch
 set laststatus=2
 set showcmd
 set showmode
@@ -157,10 +175,10 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+"
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -185,6 +203,10 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 "### vimfiler
 let g:unite_enable_start_insert = 0
@@ -200,6 +222,47 @@ function! s:vimfiler_my_settings()
   unmap <buffer> t
   unmap <buffer> T
 endfunction
+
+"### fugitive
+autocmd QuickFixCmdPost *grep* cwindow
+
+"### syntax check
+" let g:syntastic_ruby_checkers = ['rubocop']
+
+"### colorscheme
+set background=dark
+" colorscheme darkblue
+" colorscheme delek
+" colorscheme elflord
+" colorscheme industry
+" colorscheme morning
+" colorscheme pablo
+" colorscheme ron
+" colorscheme slate
+" colorscheme zellner
+" colorscheme blue
+" colorscheme default
+" colorscheme desert
+" colorscheme evening
+" colorscheme koehler
+" colorscheme murphy
+colorscheme peachpuff
+" colorscheme shine
+" colorscheme torte
+"
+"### highlight indent
+" highlight IndentGuidesOdd ctermbg=241
+" highlight IndentGuidesEven ctermbg=240
+" let g:indent_guides_start_level=2
+" let g:indent_guides_enable_on_vim_startup = 1 " 透過コンソールだから？色調整必要
+
+"### lightline
+" let g:lightline = {
+"   \ 'colorscheme': 'wombat',
+"   \ }
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ }
 
 "### vimshell keymap
 nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
@@ -233,13 +296,15 @@ vnoremap <silent><Tab> >gv
 vnoremap <silent><S-Tab> <gv
 
 "### toggle color in vi mode
-autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=none
-autocmd InsertLeave * highlight StatusLine ctermfg=Black ctermbg=White cterm=none
+" autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=none
+" autocmd InsertLeave * highlight StatusLine ctermfg=Black ctermbg=White cterm=none
 
-"### tab line
+"### anywere SID.
 function! s:SID_PREFIX() " Anywhere SID.
   return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
 endfunction
+
+"### Set tabline.
 function! s:my_tabline()  "{{{
   let s = ''
   for i in range(1, tabpagenr('$'))
@@ -260,12 +325,38 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
+set tabpagemax=20
 
-" The prefix key.
+"### The prefix key.
 nnoremap [Tag] <Nop>
-nmap t [Tag]
-" Tab jump
-for n in range(1, 9)
+nmap <silent> t [Tag]
+
+"### Tab jump
+for n in range(1, 20)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 "}}}
+
+"### tc 新しいタブを一番右に作る
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+
+"### tx タブを閉じる
+map <silent> [Tag]x :tabclose<CR>
+
+" "### tn 次のタブ ！multi-cursorsが動作しなくなるので標準のgtを使用
+" map <silent> [Tag]n :tabnext<CR>
+
+"### tp 前のタブ ！multi-cursorsが動作しなくなるので標準のgtを使用
+" map <silent> [Tag]p :tabprevious<CR>
+
+highlight turn gui=standout cterm=standout
+call matchadd("turn", '.\%>81v')
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
