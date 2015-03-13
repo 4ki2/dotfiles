@@ -37,13 +37,13 @@ alias ll="ls -alh"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias gr="grep -Ri"
+alias gr="grep -nRi"
 alias gralias="alias|grep -i"
 alias grenv="env|grep -i"
 alias grps="ps aux|grep -i"
 
 # find
-alias f=find
+alias f="find . -iname"
 alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc\" -prune -o -path \"/var\" -prune -o -path \"/sys\" -prune -o -path \"/root\" -prune -o -path \"/lost+found\" -prune -o -path \"/tmp/vmware-root\" -prune -o"
 alias findroot=fr
 alias fc="find . -maxdepth 1"
@@ -100,6 +100,11 @@ alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbe
 alias gemenv="gem env"
 alias cdgems="cd `gems`"
 $ gemlist() { gem list ^$1\$ --remote --all; }
+
+# perl
+alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
+alias fp="find /usr/lib/perl5 /usr/lib/perl/`pv` /usr/share/perl/`pv` /usr/local/lib/perl/`pv` /usr/share/perl5 /usr/local/share/perl/`pv` -type d -iname"
+alias findperl=fp
 
 # mailcatcher
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"

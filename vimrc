@@ -1,42 +1,35 @@
- " Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-
 if has('vim_starting')
   if &compatible
-    set nocompatible " Be iMproved
+    set nocompatible               " Be iMproved
   endif
 
   " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  set runtimepath+=/home/vagrant/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('/home/vagrant/.vim/bundle'))
 
+" Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Recommended to install
-" After install, turn shell ~/.vim/bundle/vimproc, (n,g)make -f your_machines_makefile
-let g:make = 'gmake'
-if system('uname -o') =~ '^GNU/'
-  let g:make = 'make'
-endif
-NeoBundle 'Shougo/vimproc.vim', {'build': {'unix': g:make}}
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/unite.vim' " for vimfiler
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+
+"### github (filer/search)
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
 
 "### vim-scripts repos
 NeoBundle 'sudo.vim'
 NeoBundle 'ruby-matchit'
-
-"### github (filer/search)
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'tpope/vim-fugitive'
 
 "### github (editing)
 NeoBundle 'terryma/vim-multiple-cursors'
