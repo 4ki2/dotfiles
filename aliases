@@ -1,31 +1,33 @@
-# system and consoles
+# user and consoles
+alias p=pwd
+alias h=history
 alias cl=clear
 alias cle=cl
 alias clea=cl
 alias cler=cl
-alias du="du -h --max-depth=1"
 alias e=exit
 alias ex=e
 alias exi=e
-alias h=history
-alias kk="kill -9"
-alias p=pwd
-alias s="slogin -o ServerAliveInterval=60"
-alias top="top -c"
 alias halt="sudo shutdown -h now"
 alias reboot="sudo shutdown -r now"
-alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
-alias aptpurge="sudo apt-get autoremove"
-#alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
-stty -ixon -ixoff # for Ctrl-Shift
 
-# files
+# process
+alias top="top -c"
+alias kk="kill -9"
+
+# file system
+alias ...="../.."
+alias ....="../../.."
+alias .....="../../../.."
+alias ......="../../../../.."
+alias du="du -h --max-depth=1"
 alias cp="cp -ip"
 alias d=colordiff
 alias dr="colordiff -r"
 alias drx="colordiff -r --exclude='.*'"
 alias mv="mv -i"
 alias rm="rm -i"
+alias untgz="tar xzvf"
 
 # ls
 alias ls="ls -F --color=auto"
@@ -62,14 +64,22 @@ alias vv="vim ~/.vimrc"
 alias vz="vim ~/.zshrc"
 alias sv="sudo -H vim"
 
-# archiver
-alias untgz="tar xzvf"
-
 # pager
 alias le=lv
 alias les=le
 alias less=le
 alias lesss=le
+
+# package manager
+alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
+alias aptpurge="sudo apt-get autoremove"
+#alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
+alias aptsearch="aptitude search"
+alias aptinstall="sudo aptitude install"
+
+# network
+alias s="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
+$ port() { sudo lsof -n -i:$1; }
 
 # rails
 alias b=bundle
@@ -81,12 +91,10 @@ alias development="unset RAILS_ENV"
 alias r=rails
 alias rc="rails c"
 alias rs="rails s"
-alias rake="spring rake"
-#alias rspec="spring rspec"
-alias redisclear="redis-cli flushall; sudo service redis-server restart"
-alias railsclear="rake assets:clean; rake tmp:clear; rake log:clear"
-alias resetdb="rake db:drop; rake db:create; rake db:migrate"
-alias precompile="rake assets:precompile"
+alias rsp="rails s -e production"
+alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
+alias precompile="bundle exec rake assets:precompile"
+alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
 
 # ruby
 alias rv="ruby -v|cut -d' ' -f2"
@@ -105,6 +113,13 @@ $ gemlist() { gem list ^$1\$ --remote --all; }
 alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
 alias fp="find /usr/lib/perl5 /usr/lib/perl/`pv` /usr/share/perl/`pv` /usr/local/lib/perl/`pv` /usr/share/perl5 /usr/local/share/perl/`pv` -type d -iname"
 alias findperl=fp
+alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
+
+# redis
+alias redisclear="redis-cli flushall; sudo service redis-server restart"
+
+# postgres
+alias pgc="psql -U postgres"
 
 # mailcatcher
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
@@ -112,6 +127,7 @@ alias mailcatcher="mailcatcher --http-ip `ip`"
 
 # git
 alias g="git"
+alias gi="g init"
 alias gb="g b"
 alias gcm="g config user.email"
 alias gcn="g config user.name"
@@ -122,6 +138,11 @@ alias gw="g w"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
+alias gi-4ki2="g init; gcm '4ki4ki@gmail.com'; gcn '4ki2'"
+
+# heroku
+alias hpush="git push heroku master"
+alias hlog="heroku logs --tail"
 
 # reloader
 alias reloadrc=". ~/.zshrc"
@@ -131,6 +152,25 @@ alias reloadenv=". ~/.localenv"
 # configure
 alias configurevim="./configure --disable-darwin --disable-smack --disable-selinux --disable-xsmp --enable-luainterp=yes --enable-rubyinterp=yes --enable-cscope --disable-netbeans --enable-multibyte --enable-fontset --enable-gui=no --disable-gtktest --disable-gpm --with-features=huge"
 alias configuretmux="sh autogen.sh; ./configure"
+
+# daemon control
+alias servstat="service --status-all"
+alias resetap="sudo service apache2 restart"
+alias resetmsql="sudo service mysql restart"
+alias resetpg="sudo service postgresql restart"
+MISC_SERVS=(`cat <<_SERVS_
+apache2
+hyperestraier
+memcached
+mogilefsd
+mogstored
+mysql
+nginx
+postgresql
+redis-server
+tokyotyrant
+_SERVS_`)
+$ stopserv() { for s in $MISC_SERVS; do; sudo service $s stop; done; }
 
 # association
 alias -s txt=v

@@ -43,6 +43,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
+NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'othree/html5.vim'
 " NeoBundle 'scrooloose/syntastic' " 煩わしい
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -346,6 +347,8 @@ highlight turn gui=standout cterm=standout
 call matchadd("turn", '.\%>81v')
 
 call neobundle#end()
+
+call pathogen#infect() " for vim-slim
 
 " Required:
 filetype plugin indent on

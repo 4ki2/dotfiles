@@ -51,3 +51,7 @@ pickle-email-*.html
 !.keep
 !.rspec
 .svn/
+
+# for Perl test
+debug.txt
+save.txt

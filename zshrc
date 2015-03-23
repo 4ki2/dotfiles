@@ -6,7 +6,7 @@ export BUNDLER_EDITOR=vim
 export MAKEOPTS="-j`egrep -c "^processor\s:\s[0-9]+$" /proc/cpuinfo`"
 
 # for Ctrl-Shift
-# stty -ixon -ixoff
+stty -ixon -ixoff
 
 # for zsh
 export LSCOLORS=Exfxcxdxbxegedabagacad
