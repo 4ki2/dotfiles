@@ -1,6 +1,5 @@
 [core]
-  pager="lv -c"
-#  pager=less
+  pager="less -r"
   editor=/usr/local/bin/vim
   excludesfile = ~/.gitignore
 [color]

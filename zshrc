@@ -1,19 +1,20 @@
-# env
-export LANG=ja_JP.UTF-8
-export PAGER=lv
-export EDITOR=vim
-export BUNDLER_EDITOR=vim
-export MAKEOPTS="-j`egrep -c "^processor\s:\s[0-9]+$" /proc/cpuinfo`"
+# aliases
+if [ -f ~/.aliases ]; then
+  . ~/.aliases
+fi
+
+# environments
+if [ -f ~/.env ]; then
+  . ~/.env
+fi
+
+# secrets
+if [ -f ~/.secrets ]; then
+  . ~/.secrets
+fi
 
 # for Ctrl-Shift
 stty -ixon -ixoff
-
-# for zsh
-export LSCOLORS=Exfxcxdxbxegedabagacad
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-export ZLS_COLORS=$LS_COLORS
-export CLICOLOR=true
-export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
 # rbenv
 export RBENV_ROOT="${HOME}/.rbenv"
@@ -21,14 +22,6 @@ if [ -d "${RBENV_ROOT}" ]; then
   export PATH="${RBENV_ROOT}/bin:${PATH}"
   eval "$(rbenv init -)"
   source $RBENV_ROOT/completions/rbenv.zsh
-fi
-
-# for mailcatcher
-export TRUSTED_IP=127.0.0.1
-
-# secrets
-if [ -f ~/.localenv ]; then
-  . ~/.localenv
 fi
 
 # Set up the prompt
@@ -106,9 +99,10 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
-fi
+# direnv
+eval "$(direnv hook zsh)"
+
+# tmux
 if [ $SHLVL = 1 ]; then
   tmux attach || tmux -f $HOME/.tmux.conf
 fi

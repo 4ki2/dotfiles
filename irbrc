@@ -43,13 +43,13 @@ end
 
 if defined? Rails::Console
   ActiveRecord::Base.logger = nil
-#  ActiveResource::Base.logger = nil
+  # ActiveResource::Base.logger = nil
 
   def logger flg
     buff = irb_context.echo
     irb_context.echo = false
     ActiveRecord::Base.logger = flg ? Logger.new(STDOUT) : nil
-    ActiveResource::Base.logger = flg ? Logger.new(STDOUT) : nil
+    # ActiveResource::Base.logger = flg ? Logger.new(STDOUT) : nil
     irb_context.echo = buff
     puts "Logger #{flg ? "On" : "Off"}"
   end

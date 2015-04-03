@@ -1,15 +1,16 @@
-# for Linux
+# Shell
 .#*
 \#*#
 *~
+.envrc
 
-# for vim
+# vim
 .*.sw[a-z]
 *.un~
 Session.vim
 .netrwhist
 
-# for OSX
+# OSX
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -32,7 +33,7 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-# for Rails
+# Rails
 *.rbc
 *.sassc
 .sass-cache
@@ -52,6 +53,6 @@ pickle-email-*.html
 !.rspec
 .svn/
 
-# for Perl test
+# Perl test
 debug.txt
 save.txt
