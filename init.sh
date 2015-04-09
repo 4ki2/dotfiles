@@ -11,7 +11,8 @@ ln -s $PWD/tmux.conf ~/.tmux.conf
 ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/zshrc ~/.zshrc
 
-sudo aptitude install build-essential automake golang language-pack-ja libevent-dev ncurses-dev lua5.2 liblua5.2-dev libssl-dev libxml2-dev libxslt-dev zsh
+sudo aptitude install build-essential automake golang language-pack-ja libevent-dev ncurses-dev lua5.2 liblua5.2-dev libssl-dev libxml2-dev libxslt-dev libffi-dev zsh
+sudo update-locale LANG=ja_JP.UTF-8
 sudo update-alternatives --remove editor /usr/bin/vim.basic
 sudo update-alternatives --remove editor /usr/bin/vim.tiny
 sudo aptitude remove vim vim-tiny vim-common ubuntu-minimal tmux
