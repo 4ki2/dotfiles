@@ -32,6 +32,7 @@ sudo updatedb
 sudo update-alternatives --install /usr/bin/editor editor `which vim` 100
 sudo update-alternatives --config editor
 curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+vim +:NeoBundleInstall +:q
 cd ..
 
 git clone --depth 1 https://github.com/ThomasAdam/tmux.git
