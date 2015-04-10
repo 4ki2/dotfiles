@@ -11,14 +11,16 @@ ln -s $PWD/tmux.conf ~/.tmux.conf
 ln -s $PWD/vimrc ~/.vimrc
 ln -s $PWD/zshrc ~/.zshrc
 
-sudo aptitude install build-essential automake golang language-pack-ja libevent-dev ncurses-dev lua5.2 liblua5.2-dev libssl-dev libxml2-dev libxslt-dev libffi-dev zsh colordiff
+sudo aptitude -y install build-essential automake golang-go language-pack-ja libevent-dev ncurses-dev lua5.2 liblua5.2-dev libssl-dev libxml2-dev libxslt-dev libffi-dev zsh colordiff
 sudo update-locale LANG=ja_JP.UTF-8
+echo "Asia/Tokyo" | sudo tee /etc/timezone
+sudo dpkg-reconfigure --frontend noninteractive tzdata
 sudo update-alternatives --remove editor /usr/bin/vim.basic
 sudo update-alternatives --remove editor /usr/bin/vim.tiny
-sudo aptitude remove vim vim-tiny vim-common ubuntu-minimal tmux
+sudo aptitude remove vim vim-tiny vim-common ubuntu-minimal nano tmux
 
 chsh -s /bin/zsh
-source aliase
+source aliases
 cd ..
 
 git clone --depth 1 https://github.com/b4winckler/vim.git
@@ -27,8 +29,9 @@ configurevim
 make
 sudo make install
 sudo updatedb
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+sudo update-alternatives --install /usr/bin/editor editor `which vim` 100
 sudo update-alternatives --config editor
+curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 cd ..
 
 git clone --depth 1 https://github.com/ThomasAdam/tmux.git
