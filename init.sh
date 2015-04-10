@@ -49,7 +49,7 @@ cd ..
 
 git clone --depth 1 https://github.com/sstephenson/rbenv.git
 ln -s $PWD/rbenv ~/.rbenv
-mkdir -p rbenv/plugins; cd $_
+mkdir -p rbenv/plugins; cd rbenv/plugins
 git clone --depth 1 https://github.com/sstephenson/ruby-build.git
 
 sudo login -f vagrant
