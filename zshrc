@@ -100,7 +100,9 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # direnv
-eval "$(direnv hook zsh)"
+if [ -f ~/.envs ]; then
+  eval "$(direnv hook zsh)"
+fi
 
 # tmux
 if [ $SHLVL = 1 ]; then
