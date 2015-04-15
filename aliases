@@ -94,15 +94,8 @@ alias vv="vim ~/.vimrc"
 alias vz="vim ~/.zshrc"
 alias sv="sudo -H vim"
 
-# package manager
-alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
-alias aptpurge="sudo apt-get autoremove; sudo apt-get clean"
-#alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
-alias aptsearch="aptitude search"
-alias aptinstall="sudo aptitude install"
-$ aptalready() { aptitude search $1 | grep ^i }
-
 # network
+alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
 alias s="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
 $ port() { sudo lsof -n -i:$1; }
 
@@ -145,10 +138,6 @@ alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
 # postgres
 alias pgc="psql -U postgres"
 
-# mailcatcher
-alias ip="LANG=C /sbin/ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
-alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
-
 # git
 alias g="git"
 alias gi="g init"
@@ -162,10 +151,8 @@ alias gw="g w"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
-alias gi-4ki2="g init; gcm '4ki4ki@gmail.com'; gcn '4ki2'"
 
 # heroku
-alias hpush="git push heroku master"
 alias hlog="heroku logs --tail"
 
 # reloader
@@ -180,10 +167,22 @@ alias configuretmux="sh autogen.sh; ./configure"
 
 # daemon control
 alias redisflush="redis-cli flushall; sudo service redis-server restart"
+alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
+
+# dependency base system
 case $CURRENT_OS in
   Ubuntu);
+    # package manager
+    alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
+    alias aptpurge="sudo apt-get autoremove; sudo apt-get clean"
+    #alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
+    alias aptsearch="aptitude search"
+    alias aptinstall="sudo aptitude install"
+    $ aptalready() { aptitude search $1 | grep ^i }
+    # daemon control
     alias servstat="service --status-all";;
   CentOS);
+    # daemon control
     DEV_SERVS=(`cat <<_SERVS_
 mysqld
 memcached

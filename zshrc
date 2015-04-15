@@ -1,3 +1,8 @@
+# include sbin?
+if [ `echo $PATH|grep -c sbin` -eq 0 ]; then
+  export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
+fi
+
 # aliases
 if [ -f ~/.aliases ]; then
   . ~/.aliases
