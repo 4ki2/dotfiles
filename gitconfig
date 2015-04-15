@@ -16,7 +16,7 @@
   c="commit"
   ca="commit --amend"
   cl="clone"
-  cd="clone --depth"
+  cl1="clone --depth 1"
   ch="commit -C HEAD --amend"
   cm="commit -m"
   cp="cherry-pick"

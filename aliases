@@ -138,7 +138,7 @@ fi
 
 # perl
 alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
-alias fp="find /usr/lib/perl5 /usr/lib/perl/`pv` /usr/share/perl/`pv` /usr/local/lib/perl/`pv` /usr/share/perl5 /usr/local/share/perl/`pv` -type d -iname"
+alias fp="find `echo \`pmdirs\`` -type d -iname" # require pmtools
 alias findperl=fp
 alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
 
@@ -179,23 +179,20 @@ alias configurevim="./configure --disable-darwin --disable-smack --disable-selin
 alias configuretmux="sh autogen.sh; ./configure"
 
 # daemon control
-if [ $CURRENT_OS = 'Ubuntu' ]; then
-  alias redisflush="redis-cli flushall; sudo service redis-server restart"
-  alias servstat="service --status-all"
-  alias restart_apache="sudo service apache2 restart"
-  alias restart_mysql="sudo service mysql restart"
-  alias restart_postgresql="sudo service postgresql restart"
-  MISC_SERVS=(`cat <<_SERVS_
-apache2
-hyperestraier
+alias redisflush="redis-cli flushall; sudo service redis-server restart"
+case $CURRENT_OS in
+  Ubuntu);
+    alias servstat="service --status-all";;
+  CentOS);
+    DEV_SERVS=(`cat <<_SERVS_
+mysqld
 memcached
+redis
+hyperestraier
 mogilefsd
 mogstored
-mysql
-nginx
-postgresql
-redis-server
 tokyotyrant
+httpd
 _SERVS_`)
-  $ services() { for s in $MISC_SERVS; do; sudo service $s $1; done; }
-fi
+    $ services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; };;
+esac
