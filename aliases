@@ -30,8 +30,6 @@ alias cler=cl
 alias e=exit
 alias ex=e
 alias exi=e
-alias halt="sudo shutdown -h now"
-alias reboot="sudo shutdown -r now"
 
 # process
 alias top="top -c"
@@ -99,45 +97,6 @@ alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127
 alias s="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
 $ port() { sudo lsof -n -i:$1; }
 
-# rails
-alias b=bundle
-alias bu="bundle update"
-alias sq="bundle exec sidekiq -C config/sidekiq.yml"
-alias production="export RAILS_ENV=production"
-alias staging="export RAILS_ENV=staging"
-alias development="unset RAILS_ENV"
-alias r=rails
-alias rc="rails c"
-alias rs="rails s"
-alias rsp="rails s -e production"
-alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
-alias precompile="bundle exec rake assets:precompile"
-alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
-
-# ruby
-if [ -f ~/.rbenv ]; then
-  alias rv="ruby -v|cut -d' ' -f2"
-  $ rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
-  alias rls="rbenv versions"
-  alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
-  alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
-  alias rbrehash="rbenv rehash"
-  alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9.*) echo 1.9.1;; 2.1.*) echo 2.1.0;; 2.2.*) echo 2.2.0;; *) rv|cut -d'p' -f1;; esac`/gems"
-  alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
-  alias gemenv="gem env"
-  alias cdgems="cd `gems`"
-  $ gemlist() { gem list ^$1\$ --remote --all; }
-fi
-
-# perl
-alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
-alias fp="find `echo \`pmdirs\`` -type d -iname" # require pmtools
-alias findperl=fp
-alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
-
-# postgres
-alias pgc="psql -U postgres"
-
 # git
 alias g="git"
 alias gi="g init"
@@ -153,7 +112,7 @@ if [ -f ~/.gitrc ]; then
 fi
 
 # heroku
-alias hlog="heroku logs --tail"
+alias helog="heroku logs --tail"
 
 # reloader
 alias reloadrc=". ~/.zshrc"
@@ -167,21 +126,66 @@ alias configuretmux="sh autogen.sh; ./configure"
 
 # daemon control
 alias redisflush="redis-cli flushall; sudo service redis-server restart"
-alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
 
 # dependency base system
 case $CURRENT_OS in
+
   Ubuntu);
+
     # package manager
     alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
     alias aptpurge="sudo apt-get autoremove; sudo apt-get clean"
-    #alias purgekernel="dpkg -l 'linux-[a-z]*-[0-9.]*'|grep ^i|cut -d' ' -f3|grep -v `uname -r|cut -d- -f1,2`|xargs sudo aptitude purge"
     alias aptsearch="aptitude search"
     alias aptinstall="sudo aptitude install"
     $ aptalready() { aptitude search $1 | grep ^i }
+
+    # system
+    alias halt="sudo shutdown -h now"
+    alias reboot="sudo shutdown -r now"
+
     # daemon control
-    alias servstat="service --status-all";;
+    alias servstat="service --status-all"
+    alias pgc="psql -U postgres"
+
+    # rails
+    alias b=bundle
+    alias bu="bundle update"
+    alias sq="bundle exec sidekiq -C config/sidekiq.yml"
+    alias production="export RAILS_ENV=production"
+    alias staging="export RAILS_ENV=staging"
+    alias development="unset RAILS_ENV"
+    alias r=rails
+    alias rc="rails c"
+    alias rs="rails s"
+    alias rsp="rails s -e production"
+    alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
+    alias precompile="bundle exec rake assets:precompile"
+    alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
+
+    # ruby
+    if [ -f ~/.rbenv ]; then
+      alias rv="ruby -v|cut -d' ' -f2"
+      $ rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
+      alias rls="rbenv versions"
+      alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
+      alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
+      alias rbrehash="rbenv rehash"
+      alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9.*) echo 1.9.1;; 2.1.*) echo 2.1.0;; 2.2.*) echo 2.2.0;; *) rv|cut -d'p' -f1;; esac`/gems"
+      alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
+      alias gemenv="gem env"
+      alias cdgems="cd `gems`"
+      $ gemlist() { gem list ^$1\$ --remote --all; }
+      alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
+    fi;;
+
   CentOS);
+
+    # perl
+    alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
+    alias fp="find `echo \`pmdirs\`` -type d -iname" # require pmtools
+    alias findperl=fp
+    alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
+
     # daemon control
     DEV_SERVS=(`cat <<_SERVS_
 mysqld
