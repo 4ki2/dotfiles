@@ -1,14 +1,3 @@
-# check os
-CURRENT_OS=`uname -s`
-if [ -f /etc/issue ]; then
-CURRENT_OS=`head -n 1 /etc/issue`
-fi
-case $CURRENT_OS in
-  Darwin*) CURRENT_OS=Mac;;
-  Ubuntu*) CURRENT_OS=Ubuntu;;
-  CentOS*) CURRENT_OS=CentOS;;
-esac
-
 # association
 alias -s txt=vim
 alias -s conf=vim
@@ -51,7 +40,6 @@ alias untgz="tar xzvf"
 
 # ls
 alias ls="ls -F --color=auto"
-alias sl=ls
 alias l="ls -C"
 alias la="ls -A"
 alias ll="ls -alh"
@@ -79,22 +67,21 @@ alias fc="find . -maxdepth 1"
 alias findcurrent=fc
 
 # editor
-alias v="vim -p"
+alias vim="vim -p"
+alias v=vim
 alias va="vim ~/.aliases"
 alias vc="vim ~/.ssh/config"
 alias ve="vim ~/.env"
 alias vg="vim ~/.gitconfig"
-alias vi="vim ~/.irbrc"
-alias vr="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
 alias vs="vim ~/.secrets"
 alias vt="vim ~/.tmux.conf"
 alias vv="vim ~/.vimrc"
 alias vz="vim ~/.zshrc"
-alias sv="sudo -H vim"
+alias sudovim="sudo -H vim"
 
 # network
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
-alias s="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
+alias ssh="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
 $ port() { sudo lsof -n -i:$1; }
 
 # git
@@ -128,9 +115,14 @@ alias configuretmux="sh autogen.sh; ./configure"
 alias redisflush="redis-cli flushall; sudo service redis-server restart"
 
 # dependency base system
+# check os
+CURRENT_OS=`uname -s`
+if [ -f /etc/issue ]; then
+  CURRENT_OS=`head -n 1 /etc/issue`
+fi
 case $CURRENT_OS in
 
-  Ubuntu);
+  Ubuntu*);
 
     # package manager
     alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
@@ -161,9 +153,19 @@ case $CURRENT_OS in
     alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
     alias precompile="bundle exec rake assets:precompile"
     alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
+    alias vr="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
+
+    ### Added by the Heroku Toolbelt
+    export PATH="/usr/local/heroku/bin:$PATH"
 
     # ruby
-    if [ -f ~/.rbenv ]; then
+    if [ -d ~/.rbenv ]; then
+      export RBENV_ROOT="${HOME}/.rbenv"
+      export PATH="${RBENV_ROOT}/bin:${PATH}"
+      eval "$(rbenv init -)"
+      source $RBENV_ROOT/completions/rbenv.zsh
+      export BUNDLER_EDITOR=vim
+      export TRUSTED_IP=127.0.0.1 # mailcatcher
       alias rv="ruby -v|cut -d' ' -f2"
       $ rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
       alias rls="rbenv versions"
@@ -176,15 +178,31 @@ case $CURRENT_OS in
       alias cdgems="cd `gems`"
       $ gemlist() { gem list ^$1\$ --remote --all; }
       alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
-    fi;;
+    fi
 
-  CentOS);
+    CURRENT_OS=Ubuntu;;
+
+  CentOS*);
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
     alias fp="find `echo \`pmdirs\`` -type d -iname" # require pmtools
     alias findperl=fp
     alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
+
+    # tokyocabinet
+    export TOKYOCABINET_HOST=localhost
+    export TOKYOCABINET_PORT=11978
+    alias tclist="tcrmgr list $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
+    alias tcpurge="tcrmgr vanish $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
+    alias tcget="tcrmgr get $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
+    alias tcset="tcrmgr put $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
+    alias tcdel="tcrmgr out $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
+
+    # subversion
+    export SVN_EDITOR=vim
+    alias sd="svn diff"
+    alias s="svn diff"
 
     # daemon control
     DEV_SERVS=(`cat <<_SERVS_
@@ -197,5 +215,9 @@ mogstored
 tokyotyrant
 httpd
 _SERVS_`)
-    $ services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; };;
+    $ services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; }
+
+    CURRENT_OS=CentOS;;
+
+  Darwin*) CURRENT_OS=Mac;;
 esac

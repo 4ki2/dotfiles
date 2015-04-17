@@ -1,16 +1,11 @@
-# include sbin?
-if [ `echo $PATH|grep -c sbin` -eq 0 ]; then
-  export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
+# environments
+if [ -f ~/.env ]; then
+  . ~/.env
 fi
 
 # aliases
 if [ -f ~/.aliases ]; then
   . ~/.aliases
-fi
-
-# environments
-if [ -f ~/.env ]; then
-  . ~/.env
 fi
 
 # secrets
@@ -20,14 +15,6 @@ fi
 
 # for Ctrl-Shift
 stty -ixon -ixoff
-
-# rbenv
-export RBENV_ROOT="${HOME}/.rbenv"
-if [ -d "${RBENV_ROOT}" ]; then
-  export PATH="${RBENV_ROOT}/bin:${PATH}"
-  eval "$(rbenv init -)"
-  source $RBENV_ROOT/completions/rbenv.zsh
-fi
 
 # Set up the prompt
 autoload -Uz promptinit
@@ -113,6 +100,3 @@ fi
 if [ $SHLVL = 1 ]; then
   tmux attach || tmux -f $HOME/.tmux.conf
 fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
