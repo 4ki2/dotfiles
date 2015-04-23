@@ -2,9 +2,7 @@
 alias -s txt=vim
 alias -s conf=vim
 alias -s csv=vim
-alias -s sql=vim
 alias -s rdoc=vim
-alias -s rb=vim
 alias -s erb=vim
 alias -s slim=vim
 alias -s yml=vim
@@ -54,7 +52,7 @@ alias lesss=le
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
-alias gr="grep -nRi"
+$ gr() { grep -nriI $1 . }
 alias gralias="alias|grep -i"
 alias grenv="env|grep -i"
 alias grps="ps aux|grep -i"
@@ -97,6 +95,29 @@ alias gw="g w"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
+alias grco_check="find . -type d -name .git"
+git_recursive_checkout() {
+  local readonly base_path=`pwd`
+  for d in `grco_check`; do
+    cd `dirname $d`
+    git add .
+    git stash
+    git checkout $1
+    cd $base_path
+  done
+}
+alias grco_master="git_recursive_checkout master"
+alias grco_localdev="git_recursive_checkout localdev"
+
+# subversion
+export SVN_EDITOR=vim
+alias sa="svn add"
+alias sc="svn commit -m"
+alias sd="svn diff"
+alias sl="svn log"
+alias sll="svn log|less"
+alias sr="svn revert"
+alias su="svn update"
 
 # heroku
 alias helog="heroku logs --tail"
@@ -186,7 +207,7 @@ case $CURRENT_OS in
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
-    alias fp="find `echo \`pmdirs\`` -type d -iname" # require pmtools
+    $ fp(){ find `echo \`pmdirs\`` -iname $1* } # require pmtools
     alias findperl=fp
     alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
 
@@ -198,11 +219,6 @@ case $CURRENT_OS in
     alias tcget="tcrmgr get $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
     alias tcset="tcrmgr put $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
     alias tcdel="tcrmgr out $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
-
-    # subversion
-    export SVN_EDITOR=vim
-    alias sd="svn diff"
-    alias s="svn diff"
 
     # daemon control
     DEV_SERVS=(`cat <<_SERVS_
