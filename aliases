@@ -53,6 +53,7 @@ alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
 $ gr() { grep -nriI $1 . }
+$ gl() { grep -ril $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
 alias gralias="alias|grep -i"
 alias grenv="env|grep -i"
 alias grps="ps aux|grep -i"
@@ -84,14 +85,8 @@ $ port() { sudo lsof -n -i:$1; }
 
 # git
 alias g="git"
-alias gi="g init"
-alias gb="g b"
 alias gcm="g config user.email"
 alias gcn="g config user.name"
-alias gd="g d"
-alias gs="g s"
-alias gl="g l"
-alias gw="g w"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
