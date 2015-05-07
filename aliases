@@ -49,11 +49,10 @@ alias less=le
 alias lesss=le
 
 # grep
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
-$ gr() { grep -nriI $1 . }
-$ gl() { grep -ril $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
+MY_GREP_OPTIONS="--color=auto -I"
+alias grep="grep $MY_GREP_OPTIONS"
+alias fgrep="fgrep $MY_GREP_OPTIONS"
+alias egrep="egrep $MY_GREP_OPTIONS"
 alias gralias="alias|grep -i"
 alias grenv="env|grep -i"
 alias grps="ps aux|grep -i"
@@ -159,6 +158,10 @@ case $CURRENT_OS in
     alias servstat="service --status-all"
     alias pgc="psql -U postgres"
 
+    # grep (>= 2.5.2)
+    $ gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git}
+    $ gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|sort|uniq }
+
     # rails
     alias b=bundle
     alias bu="bundle update"
@@ -203,6 +206,10 @@ case $CURRENT_OS in
     CURRENT_OS=Ubuntu;;
 
   CentOS*);
+
+    # grep (< 2.5.2)
+    $ gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
+    $ gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
