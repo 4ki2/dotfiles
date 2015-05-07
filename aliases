@@ -90,10 +90,10 @@ alias gcn="g config user.name"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
-alias grco_check="find . -type d -name .git"
+alias grco-check="find . -type d -name .git"
 git_recursive_checkout() {
   local readonly base_path=`pwd`
-  for d in `grco_check`; do
+  for d in `grco-check`; do
     cd `dirname $d`
     git add .
     git stash
@@ -101,8 +101,8 @@ git_recursive_checkout() {
     cd $base_path
   done
 }
-alias grco_master="git_recursive_checkout master"
-alias grco_localdev="git_recursive_checkout localdev"
+alias grco-master="git_recursive_checkout master"
+alias grco-localdev="git_recursive_checkout localdev"
 
 # subversion
 export SVN_EDITOR=vim
@@ -110,12 +110,16 @@ alias sa="svn add"
 alias sc="svn commit -m"
 alias sd="svn diff"
 alias sl="svn log"
+alias slh="svn log|head"
 alias sll="svn log|less"
 alias sr="svn revert"
 alias su="svn update"
 
 # heroku
 alias helog="heroku logs --tail"
+
+# direnv
+alias da="direnv allow"
 
 # reloader
 alias reloadrc=". ~/.zshrc"
