@@ -170,7 +170,7 @@ case $CURRENT_OS in
 
     # grep (>= 2.5.2)
     gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git}
-    gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|sort|uniq }
+    gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|uniq }
 
     # rails
     alias b=bundle
@@ -219,7 +219,7 @@ case $CURRENT_OS in
 
     # grep (< 2.5.2)
     gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
-    gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
+    gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|uniq }
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
