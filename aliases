@@ -80,7 +80,7 @@ alias sudovim="sudo -H vim"
 # network
 alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
 alias ssh="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
-$ port() { sudo lsof -n -i:$1; }
+port() { sudo lsof -n -i:$1; }
 
 # git
 alias g="git"
@@ -108,11 +108,21 @@ export SVN_EDITOR=vim
 alias sa="svn add"
 alias sc="svn commit -m"
 alias sd="svn diff"
-alias sl="svn log"
+alias sl="svn log|less"
 alias slh="svn log|head"
-alias sll="svn log|less"
+alias sq="svn log -q"
 alias sr="svn revert"
+alias ss="svn status"
 alias su="svn update"
+sw() {
+  for r in `svn log -q -l 2|grep ^r|cut -d' ' -f1`; do
+    if [ $rev ]; then
+      rev=$rev:
+    fi
+    rev=$rev$r
+  done
+  svn diff -r $rev
+}
 
 # heroku
 alias helog="heroku logs --tail"
@@ -148,7 +158,7 @@ case $CURRENT_OS in
     alias aptpurge="sudo apt-get autoremove; sudo apt-get clean"
     alias aptsearch="aptitude search"
     alias aptinstall="sudo aptitude install"
-    $ aptalready() { aptitude search $1 | grep ^i }
+    aptalready() { aptitude search $1 | grep ^i }
 
     # system
     alias halt="sudo shutdown -h now"
@@ -159,8 +169,8 @@ case $CURRENT_OS in
     alias pgc="psql -U postgres"
 
     # grep (>= 2.5.2)
-    $ gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git}
-    $ gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|sort|uniq }
+    gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git}
+    gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|sort|uniq }
 
     # rails
     alias b=bundle
@@ -190,7 +200,7 @@ case $CURRENT_OS in
       export BUNDLER_EDITOR=vim
       export TRUSTED_IP=127.0.0.1 # mailcatcher
       alias rv="ruby -v|cut -d' ' -f2"
-      $ rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
+      rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
       alias rls="rbenv versions"
       alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
       alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
@@ -199,7 +209,7 @@ case $CURRENT_OS in
       alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
       alias gemenv="gem env"
       alias cdgems="cd `gems`"
-      $ gemlist() { gem list ^$1\$ --remote --all; }
+      gemlist() { gem list ^$1\$ --remote --all; }
       alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
     fi
 
@@ -208,12 +218,12 @@ case $CURRENT_OS in
   CentOS*);
 
     # grep (< 2.5.2)
-    $ gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
-    $ gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
+    gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
+    gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|sort|uniq }
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
-    $ fp(){ find `echo \`pmdirs\`` -iname $1* } # require pmtools
+    fp(){ find `echo \`pmdirs\`` -iname $1* } # require pmtools
     alias findperl=fp
     alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
 
@@ -237,7 +247,7 @@ mogstored
 tokyotyrant
 httpd
 _SERVS_`)
-    $ services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; }
+    services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; }
 
     CURRENT_OS=CentOS;;
 
