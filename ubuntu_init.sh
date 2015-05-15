@@ -23,7 +23,7 @@ chsh -s /bin/zsh
 source aliases
 cd ..
 
-git clone --depth 1 https://github.com/b4winckler/vim.git
+git clone --depth 1 https://github.com/vim-jp/vim.git
 cd vim
 configurevim
 make
@@ -35,7 +35,7 @@ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.s
 vim +:NeoBundleInstall +:q
 cd ..
 
-git clone --depth 1 https://github.com/ThomasAdam/tmux.git
+git clone --depth 1 git://git.code.sf.net/p/tmux/tmux-code tmux
 cd tmux
 configuretmux
 make

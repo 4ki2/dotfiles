@@ -26,6 +26,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'majutsushi/tagbar'
 
 "### vim-scripts repos
 NeoBundle 'sudo.vim'
@@ -216,6 +217,9 @@ function! s:vimfiler_my_settings()
   unmap <buffer> t
   unmap <buffer> T
 endfunction
+
+"### tagbar
+nnoremap <silent><F8> :TagbarToggle<CR>
 
 "### fugitive
 autocmd QuickFixCmdPost *grep* cwindow
