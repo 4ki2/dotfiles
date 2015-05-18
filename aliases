@@ -89,15 +89,21 @@ alias gcn="g config user.name"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
-alias grco-check="find . -type d -name .git"
+alias find-git="find . -type d -name .git"
+git_list_branches() {
+  for d in `find-git`; do
+    cd `dirname $d` 
+    echo "$d (`git branch |grep \*|cut -d' ' -f2`)"
+    cd - > /dev/null
+  done
+}
 git_recursive_checkout() {
-  local readonly base_path=`pwd`
-  for d in `grco-check`; do
+  for d in `find-git`; do
     cd `dirname $d`
     git add .
     git stash
     git checkout $1
-    cd $base_path
+    cd - > /dev/null
   done
 }
 alias grco-master="git_recursive_checkout master"
@@ -213,7 +219,7 @@ case $CURRENT_OS in
       alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
     fi
 
-    CURRENT_OS=Ubuntu;;
+    export CURRENT_OS=Ubuntu;;
 
   CentOS*);
 
@@ -249,7 +255,8 @@ httpd
 _SERVS_`)
     services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; }
 
-    CURRENT_OS=CentOS;;
+    export CURRENT_OS=CentOS;;
 
   Darwin*) CURRENT_OS=Mac;;
 esac
+alias system="echo $CURRENT_OS"
