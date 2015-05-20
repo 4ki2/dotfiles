@@ -43,10 +43,9 @@ alias la="ls -A"
 alias ll="ls -alh"
 
 # pager
-alias le="less -r"
-alias les=le
-alias less=le
-alias lesss=le
+alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
+alias le=less
+alias les=less
 
 # grep
 MY_GREP_OPTIONS="--color=auto -I"
@@ -100,14 +99,17 @@ git_list_branches() {
 git_recursive_checkout() {
   for d in `find-git`; do
     cd `dirname $d`
+    echo cd `dirname $d`
     git add .
     git stash
     git checkout $1
     cd - > /dev/null
   done
 }
-alias grco-master="git_recursive_checkout master"
-alias grco-localdev="git_recursive_checkout localdev"
+alias glb=git_list_branches
+alias grco=git_recursive_checkout
+alias grco-master="grco master"
+alias grco-localdev="grco localdev"
 
 # subversion
 export SVN_EDITOR=vim
