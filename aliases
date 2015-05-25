@@ -118,10 +118,10 @@ alias sc="svn commit -m"
 alias sd="svn diff"
 alias sl="svn log|less"
 alias slh="svn log|head"
-alias sq="svn log -q"
+alias sq="svn log -q|less"
 alias sr="svn revert"
 alias ss="svn status"
-alias su="svn update"
+alias sp="svn update" # "s"vn "p"ull
 sw() {
   for r in `svn log -q -l 2|grep ^r|cut -d' ' -f1`; do
     if [ $rev ]; then
@@ -183,7 +183,6 @@ case $CURRENT_OS in
     # rails
     alias b=bundle
     alias bu="bundle update"
-    alias sq="bundle exec sidekiq -C config/sidekiq.yml"
     alias production="export RAILS_ENV=production"
     alias staging="export RAILS_ENV=staging"
     alias development="unset RAILS_ENV"
@@ -194,7 +193,8 @@ case $CURRENT_OS in
     alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
     alias precompile="bundle exec rake assets:precompile"
     alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
-    alias vr="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
+    alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
+    alias vimrails="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
 
     ### Added by the Heroku Toolbelt
     export PATH="/usr/local/heroku/bin:$PATH"
@@ -224,6 +224,13 @@ case $CURRENT_OS in
     export CURRENT_OS=Ubuntu;;
 
   CentOS*);
+
+    # package manager
+    alias yumupdate="sudo yum update"
+    alias yumclean="sudo yum clean all"
+    alias yumsearch="sudo yum search"
+    alias yuminstall="sudo yum install"
+    alias yumalready="sudo yum list"
 
     # grep (< 2.5.2)
     gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
