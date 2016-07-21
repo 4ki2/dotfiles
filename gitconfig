@@ -1,6 +1,6 @@
 [core]
-  pager="less -r"
-  editor=/usr/local/bin/vim
+#  pager="less -r"
+  editor=vim
   excludesfile = ~/.gitignore
 [color]
   status=auto
@@ -13,16 +13,20 @@
   aa="add -A ."
   au="add -u"
   b="branch"
+  ba="branch -a"
+  br="branch -r"
   c="commit"
   ca="commit --amend"
   cl="clone"
+  cld="clone --depth"
   cl1="clone --depth 1"
   ch="commit -C HEAD --amend"
   cm="commit -m"
   cp="cherry-pick"
   d="diff"
+  ds="diff --stat --name-only"
   dc="diff --cached"
-  ds="diff --cached --stat"
+  dcs="diff --cached --stat --name-only"
   f="fetch"
   fs="fsck"
   gc="gc"
@@ -32,21 +36,25 @@
   o="checkout"
   om="checkout master"
   p="pull"
+  pr="pull --rebase"
+  pq="pull-request"
   pp="pull origin master"
   r="reset"
   rs="reset --soft"
   rs1="reset --soft HEAD^"
   rs2="reset --soft HEAD~2"
+  rs3="reset --soft HEAD~3"
   rh="reset --hard"
   rh1="reset --hard HEAD^"
   rh2="reset --hard HEAD~2"
+  rh3="reset --hard HEAD~3"
   s="status"
   t="tag"
   u="push"
   uu="push origin master"
   uh="push heroku master"
   w="show"
-  ws="show --stat"
+  ws="show --stat --name-only"
   mod="submodule"
   modadd="submodule add"
   moda="submodule add"
@@ -60,8 +68,10 @@
   theirs="checkout --theirs"
   cp-continue="cherry-pick --continue"
   cp-abort="cherry-pick --abort"
+  rb="rebase"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
+  rv="revert"
   rv-continue="revert --continue"
   rv-abort="revert --abort"
   apply="stash apply"
@@ -73,3 +83,15 @@
 #[filter "largefile"]
 #  clean = store-largefile.py
 #  smudge = load-largefile.py
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+[http]
+  sslVerify = false
+[credential]
+  helper = cache
+[merge]
+  tool = vimdiff
+  keepBackup = false
+

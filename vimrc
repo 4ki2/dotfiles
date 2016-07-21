@@ -4,11 +4,11 @@ if has('vim_starting')
   endif
 
   " Required:
-  set runtimepath+=/home/vagrant/.vim/bundle/neobundle.vim/
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 " Required:
-call neobundle#begin(expand('/home/vagrant/.vim/bundle'))
+call neobundle#begin(expand('~/.vim/bundle'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -38,21 +38,23 @@ NeoBundle 'tomtom/tcomment_vim'
 "NeoBundle 'tyru/caw.vim'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'soramugi/auto-ctags.vim'
+NeoBundle 'ain/vim-capistrano'
 
 "### github (syntax)
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'slim-template/vim-slim'
-NeoBundle 'tpope/vim-pathogen'
+NeoBundle 'tpope/vim-rails'
 NeoBundle 'othree/html5.vim'
 " NeoBundle 'scrooloose/syntastic' " 煩わしい
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-scripts/AnsiEsc.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'itchyny/lightline.vim'
+" NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'AndrewRadev/switch.vim'
 
-filetype plugin indent on     " Required!
 "
 " Brief help
 " :NeoBundleList          - list configured bundles
@@ -137,12 +139,14 @@ set iminsert=0 imsearch=0
 set noimcmdline
 
 "### status line and command line
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
-" set statusline+=%{fugitive#statusline()} " add git branch
 set laststatus=2
 set showcmd
 set showmode
 set cmdheight=1
+set statusline=%<%F\ %m%r%h%w
+set statusline+=%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
+set statusline+=%=%l,%c%V%8P
+" set statusline+=%{fugitive#statusline()} " add git branch
 
 "### for neocomple
 " Disable AutoComplPop.
@@ -218,6 +222,9 @@ function! s:vimfiler_my_settings()
   unmap <buffer> T
 endfunction
 
+"### vim-slim
+autocmd BufNewFile,BufRead *.slim set ft=slim
+
 "### tagbar
 nnoremap <silent><F8> :TagbarToggle<CR>
 
@@ -242,9 +249,9 @@ set background=dark
 " colorscheme default
 " colorscheme desert
 " colorscheme evening
-" colorscheme koehler
+colorscheme koehler
 " colorscheme murphy
-colorscheme peachpuff
+" colorscheme peachpuff
 " colorscheme shine
 " colorscheme torte
 "
@@ -258,9 +265,9 @@ colorscheme peachpuff
 " let g:lightline = {
 "   \ 'colorscheme': 'wombat',
 "   \ }
-let g:lightline = {
-  \ 'colorscheme': 'solarized',
-  \ }
+" let g:lightline = {
+"   \ 'colorscheme': 'solarized',
+"   \ }
 
 "### vimshell keymap
 nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
@@ -323,7 +330,7 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 set showtabline=2
-set tabpagemax=20
+set tabpagemax=100
 
 "### The prefix key.
 nnoremap [Tag] <Nop>
@@ -347,12 +354,28 @@ map <silent> [Tag]x :tabclose<CR>
 "### tp 前のタブ ！multi-cursorsが動作しなくなるので標準のgtを使用
 " map <silent> [Tag]p :tabprevious<CR>
 
-highlight turn gui=standout cterm=standout
-call matchadd("turn", '.\%>81v')
+" 関数ジャンプで新しいタブに開く
+map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+" ctags
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.ctags']
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_filetype_mode = 1
+autocmd FileType css setlocal tags=.ctags/css.tags
+autocmd FileType html,markdown setlocal tags=.ctags/html.tags
+autocmd FileType javascript setlocal tags=.ctags/javascript.tags
+autocmd FileType python setlocal tags=.ctags/python.tags
+autocmd FileType xml setlocal tags=.ctags/xml.tags
+autocmd FileType ruby setlocal tags=.ctags/ruby.tags
+
+" highlight turn gui=standout cterm=standout
+" call matchadd("turn", '.\%>81v')
+
+" nginx syntax highlighting
+autocmd BufRead,BufNewFile *.nginx,/etc/nginx/*.conf,/etc/nginx/conf.d/* setfiletype nginx
 
 call neobundle#end()
-
-call pathogen#infect() " for vim-slim
 
 " Required:
 filetype plugin indent on

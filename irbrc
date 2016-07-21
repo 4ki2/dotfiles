@@ -33,15 +33,16 @@ require_or_notice 'hirb' do
   Hirb.enable
 end
 
-def r
-  reload!
-end
+# def reload!
+# #  $LOADED_FEATURES = []
+#   reload!
+# end
 
 def echo flg
   irb_context.echo = flg
 end
 
-if defined? Rails::Console
+if defined?(Rails::Console) && defined?(ActiveRecord::Base)
   ActiveRecord::Base.logger = nil
   # ActiveResource::Base.logger = nil
 

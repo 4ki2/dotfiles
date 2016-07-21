@@ -1,3 +1,6 @@
+# I'm here
+alias imh="echo $CURRENT_OS"
+
 # association
 alias -s txt=vim
 alias -s conf=vim
@@ -18,10 +21,6 @@ alias e=exit
 alias ex=e
 alias exi=e
 
-# process
-alias top="top -c"
-alias kk="kill -9"
-
 # file system
 alias ...="../.."
 alias ....="../../.."
@@ -29,11 +28,14 @@ alias .....="../../../.."
 alias ......="../../../../.."
 alias du="du -h --max-depth=1"
 alias cp="cp -ip"
-alias d=colordiff
+# full path copy
+alias cpf="cp --parents"
+alias d="colordiff -Z"
 alias dr="colordiff -r"
 alias drx="colordiff -r --exclude='.*'"
 alias mv="mv -i"
 alias rm="rm -i"
+alias tgz="tar cz --exclude-vcs"
 alias untgz="tar xzvf"
 
 # ls
@@ -43,7 +45,8 @@ alias la="ls -A"
 alias ll="ls -alh"
 
 # pager
-alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
+# alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
+alias less="less -r"
 alias le=less
 alias les=less
 
@@ -62,14 +65,69 @@ alias fr="find / -path \"/mnt\" -prune -o -path \"/etc\" -prune -o -path \"/proc
 alias findroot=fr
 alias fc="find . -maxdepth 1"
 alias findcurrent=fc
+alias links="find . -type l"
+alias xargs="xargs -n 256"
+
+# kill
+alias k1="kill -HUP"      # hang up
+alias k2="kill -INT"      # interrupt
+alias k3="kill -QUIT"     # quit
+alias k4="kill -ILL"
+alias k5="kill -TRAP"
+alias k6="kill -ABRT"     # abort
+alias k7="kill -EMT"
+alias k8="kill -FPE"
+alias k9="kill -KILL"     # non-catchable, non-ignorable kill
+alias k10="kill -BUS"
+alias k11="kill -SEGV"
+alias k12="kill -SYS"
+alias k13="kill -PIPE"
+alias k14="kill -ALRM"    # alarm clock
+alias k15="kill -TERM"    # software termination signal
+alias k16="kill -URG"
+alias k17="kill -STOP"
+alias k18="kill -TSTP"
+alias k19="kill -CONT"
+alias k20="kill -CHLD"
+alias k21="kill -TTIN"
+alias k22="kill -TTOU"
+alias k23="kill -POLL"
+alias k24="kill -XCPU"
+alias k25="kill -XFSZ"
+alias k26="kill -VTALRM"
+alias k27="kill -PROF"
+alias k28="kill -WINCH"   # Gracefully shutdown the worker processes
+alias k29="kill -PWR"
+alias k30="kill -USR1"    # Reopen the log files
+alias k31="kill -USR2"    # Upgrade Executable on the fly
+alias k32="kill -RESV"
+alias k33="kill -RTMIN"
+alias k34="kill -RTMIN+1"
+alias k35="kill -RTMIN+2"
+alias k36="kill -RTMIN+3"
+alias k37="kill -RTMIN+4"
+alias k38="kill -RTMIN+5"
+alias k39="kill -RTMIN+6"
+alias k40="kill -RTMIN+7"
+alias k41="kill -RTMAX-7"
+alias k42="kill -RTMAX-6"
+alias k43="kill -RTMAX-5"
+alias k44="kill -RTMAX-4"
+alias k45="kill -RTMAX-3"
+alias k46="kill -RTMAX-2"
+alias k47="kill -RTMAX-1"
+alias k48="kill -RTMAX"
 
 # editor
 alias vim="vim -p"
 alias v=vim
+alias vi=vim
 alias va="vim ~/.aliases"
 alias vc="vim ~/.ssh/config"
 alias ve="vim ~/.env"
+alias vh="sudo vim /etc/hosts"
 alias vg="vim ~/.gitconfig"
+alias vgi="vim ~/.gitignore"
 alias vs="vim ~/.secrets"
 alias vt="vim ~/.tmux.conf"
 alias vv="vim ~/.vimrc"
@@ -77,12 +135,11 @@ alias vz="vim ~/.zshrc"
 alias sudovim="sudo -H vim"
 
 # network
-alias ip="LANG=C ifconfig|grep 'inet addr'|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
-alias ssh="slogin -o ServerAliveInterval=60 -F ~/.ssh/config"
 port() { sudo lsof -n -i:$1; }
 
 # git
 alias g="git"
+alias cdg="cd $GITHUB_REPOS_PATH"
 alias gcm="g config user.email"
 alias gcn="g config user.name"
 if [ -f ~/.gitrc ]; then
@@ -91,7 +148,7 @@ fi
 alias find-git="find . -type d -name .git"
 git_list_branches() {
   for d in `find-git`; do
-    cd `dirname $d` 
+    cd `dirname $d`
     echo "$d (`git branch |grep \*|cut -d' ' -f2`)"
     cd - > /dev/null
   done
@@ -106,60 +163,68 @@ git_recursive_checkout() {
     cd - > /dev/null
   done
 }
+git_recursive_rebase() {
+  for d in `find-git`; do
+    cd `dirname $d`
+    echo cd `dirname $d`
+    git rebase master
+    cd - > /dev/null
+  done
+}
 alias glb=git_list_branches
 alias grco=git_recursive_checkout
+alias grrb=git_recursive_rebase
 alias grco-master="grco master"
 alias grco-localdev="grco localdev"
 
 # subversion
-export SVN_EDITOR=vim
 alias sa="svn add"
 alias sc="svn commit -m"
-alias sd="svn diff"
-alias sl="svn log|less"
+alias sd="svn diff|more"
+alias sl="svn log|more"
 alias slh="svn log|head"
-alias sq="svn log -q|less"
+alias sq="svn log -q|more"
 alias sr="svn revert"
 alias ss="svn status"
-alias sp="svn update" # "s"vn "p"ull
-sw() {
+alias sp="svn update" # "s"vn "p"ull/"p"ush
+sw() { # "s"vn sho"w"
+  local rev=
   for r in `svn log -q -l 2|grep ^r|cut -d' ' -f1`; do
     if [ $rev ]; then
-      rev=$rev:
+      rev=$r:$rev
+    else
+      rev=$r
     fi
-    rev=$rev$r
   done
   svn diff -r $rev
 }
 
-# heroku
-alias helog="heroku logs --tail"
-
 # direnv
 alias da="direnv allow"
 
-# reloader
-alias reloadrc=". ~/.zshrc"
-alias reloadalias=". ~/.aliases"
-alias reloadenv=". ~/.env"
-alias reloadsecret=". ~/.secrets"
-
-# configure
-alias configurevim="./configure --disable-darwin --disable-smack --disable-selinux --disable-xsmp --enable-luainterp=yes --enable-rubyinterp=yes --enable-cscope --disable-netbeans --enable-multibyte --enable-fontset --enable-gui=no --disable-gtktest --disable-gpm --with-features=huge"
-alias configuretmux="sh autogen.sh; ./configure"
-
-# daemon control
-alias redisflush="redis-cli flushall; sudo service redis-server restart"
+# nkf
+alias nkf="nkf -w --no-best-fit-chars" # 上書き前提にする
 
 # dependency base system
-# check os
-CURRENT_OS=`uname -s`
-if [ -f /etc/issue ]; then
-  CURRENT_OS=`head -n 1 /etc/issue`
-fi
+case `uname` in
+
+  Linux)
+    alias top="top -c"
+    alias ip="LANG=C ifconfig|grep inet|grep -v inet6|cut -d: -f2|cut -d' ' -f1|grep -v 127.0.0.1"
+    source $GITHUB_REPOS_PATH/dotfiles/configure-linux
+    ;;
+
+  Darwin)
+    alias ip="LANG=C ifconfig|grep inet|grep -v inet6|cut -d' ' -f2|grep -v 127.0.0.1"
+    alias dns_clear_cache="sudo killall -HUP mDNSResponder"
+    alias dns_clear_cache2="dscacheutil -flushcache"
+    source $GITHUB_REPOS_PATH/dotfiles/configure-darwin
+    ;;
+
+esac
 case $CURRENT_OS in
 
-  Ubuntu*);
+  Ubuntu)
 
     # package manager
     alias aptsafe="sudo aptitude update; sudo aptitude safe-upgrade"
@@ -173,57 +238,16 @@ case $CURRENT_OS in
     alias reboot="sudo shutdown -r now"
 
     # daemon control
+    alias redisflush="redis-cli flushall; sudo service redis-server restart"
     alias servstat="service --status-all"
     alias pgc="psql -U postgres"
 
     # grep (>= 2.5.2)
-    gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git}
-    gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git|uniq }
+    gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log --exclude=tags}
+    gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log|uniq --exclude=tags }
+    ;;
 
-    # rails
-    alias b=bundle
-    alias bu="bundle update"
-    alias production="export RAILS_ENV=production"
-    alias staging="export RAILS_ENV=staging"
-    alias development="unset RAILS_ENV"
-    alias r=rails
-    alias rc="rails c"
-    alias rs="rails s"
-    alias rsp="rails s -e production"
-    alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
-    alias precompile="bundle exec rake assets:precompile"
-    alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
-    alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
-    alias vimrails="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
-
-    ### Added by the Heroku Toolbelt
-    export PATH="/usr/local/heroku/bin:$PATH"
-
-    # ruby
-    if [ -d ~/.rbenv ]; then
-      export RBENV_ROOT="${HOME}/.rbenv"
-      export PATH="${RBENV_ROOT}/bin:${PATH}"
-      eval "$(rbenv init -)"
-      source $RBENV_ROOT/completions/rbenv.zsh
-      export BUNDLER_EDITOR=vim
-      export TRUSTED_IP=127.0.0.1 # mailcatcher
-      alias rv="ruby -v|cut -d' ' -f2"
-      rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
-      alias rls="rbenv versions"
-      alias rbupdate="cd ~/.rbenv; git pull; cd plugins/ruby-build; git pull; cd; rbenv rehash"
-      alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
-      alias rbrehash="rbenv rehash"
-      alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9.*) echo 1.9.1;; 2.1.*) echo 2.1.0;; 2.2.*) echo 2.2.0;; *) rv|cut -d'p' -f1;; esac`/gems"
-      alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
-      alias gemenv="gem env"
-      alias cdgems="cd `gems`"
-      gemlist() { gem list ^$1\$ --remote --all; }
-      alias mailcatcher="mailcatcher --http-ip `ip|head -1`"
-    fi
-
-    export CURRENT_OS=Ubuntu;;
-
-  CentOS*);
+  CentOS)
 
     # package manager
     alias yumupdate="sudo yum update"
@@ -233,8 +257,8 @@ case $CURRENT_OS in
     alias yumalready="sudo yum list"
 
     # grep (< 2.5.2)
-    gr() { find . -type d \( -name .git -o -name \.svn \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
-    gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|uniq }
+    gr() { find . -type d \( -name \.git -o -name \.git -o -name log \) -prune -o -exec grep --color=auto -niIH $1 {} \;}
+    gl() { grep -riIl $1 .|grep -v /.svn/|grep -v /.git/|grep -v /log\//|uniq }
 
     # perl
     alias pv="perl -v|grep -o '(v[0-9]\+.[0-9]\+.[0-9]\+)'|grep -o '[0-9.]\+'"
@@ -243,8 +267,6 @@ case $CURRENT_OS in
     alias clean_perl_test="find . -iname debug.txt -o -iname save.txt|xargs rm -rv"
 
     # tokyocabinet
-    export TOKYOCABINET_HOST=localhost
-    export TOKYOCABINET_PORT=11978
     alias tclist="tcrmgr list $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
     alias tcpurge="tcrmgr vanish $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
     alias tcget="tcrmgr get $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
@@ -252,20 +274,67 @@ case $CURRENT_OS in
     alias tcdel="tcrmgr out $TOKYOCABINET_HOST:$TOKYOCABINET_PORT"
 
     # daemon control
-    DEV_SERVS=(`cat <<_SERVS_
-mysqld
-memcached
-redis
-hyperestraier
-mogilefsd
-mogstored
-tokyotyrant
-httpd
-_SERVS_`)
-    services() { for s in $DEV_SERVS; do; sudo /etc/init.d/$s $1 & wait; done; }
+    alias redisflush="redis-cli flushall; sudo /etc/init.d/redis restart"
+    ;;
 
-    export CURRENT_OS=CentOS;;
+  MacOS)
+    alias macos=sw_vers
+    alias mysqld-start="mysql.server start"
+    alias mysqld-stop="mysql.server stop"
+    alias mysqld-restart="mysql.server restart"
+    alias mysqld-reload="mysql.server reload"
+    alias mysqld-freload="mysql.server force-reload"
+    alias mysqld-status="mysql.server status"
+    alias nginx-start="sudo nginx"
+    alias nginx-stop="sudo nginx -s stop"
+    alias nginx-quit="sudo nginx -s quit"
+    alias nginx-reload="sudo nginx -s reload"
+    alias nginx-reopen="sudo nginx -s reopen"
+    ;;
 
-  Darwin*) CURRENT_OS=Mac;;
 esac
-alias system="echo $CURRENT_OS"
+
+# ruby
+if [ $RBENV_ROOT ]; then
+  eval "$(rbenv init -)"
+  source $RBENV_ROOT/completions/rbenv.zsh
+  alias rv="ruby -v|cut -d' ' -f2"
+  rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
+  alias rls="rbenv versions"
+  alias rbupdate="cd $RBENV_ROOT; git pull origin master; cd plugins/ruby-build; git pull origin master; cd; rbenv rehash"
+  alias rbremote="echo '  remote'; rbenv install -l | grep '^  2\|^  1.9' | grep -v '\-dev\|\-preview\|\-rc\|1.9.1\|1.9.2'"
+  alias rbrehash="rbenv rehash"
+  alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9.*) echo 1.9.1;; 2.1.*) echo 2.1.0;; 2.2.*) echo 2.2.0;; *) rv|cut -d'p' -f1;; esac`/gems"
+  alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
+  alias gemenv="gem env"
+  alias cdgems="cd `gems`"
+  gemlist() { gem list ^$1\$ --remote --all; }
+  alias mailcatcher="mailcatcher --http-ip `ip|tail -n 1`"
+  # rails
+  alias production="export RAILS_ENV=production"
+  alias staging="export RAILS_ENV=staging"
+  alias development="unset RAILS_ENV"
+  alias r=rails
+  alias rc="rails c"
+  alias rs="rails s -b 0.0.0.0"
+  alias rss="staging; rs; development"
+  alias rsp="production; rs; development"
+  alias b="bundle --frozen"
+  alias bu="bundle update"
+  alias be="bundle exec"
+  alias beb="bundle exec bundle"
+  alias resetdb="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate"
+  alias precompile="bundle exec rake assets:precompile"
+  alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
+  alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
+  alias vimrails="LANG=C vim -p app/assets/stylesheets app/assets/javascripts app/helpers app/views app/models app/controllers config db"
+fi
+
+# heroku
+alias helog="heroku logs --tail"
+
+# reloader
+alias reloadrc=". ~/.zshrc"
+alias reloadalias=". ~/.aliases"
+alias reloadenv=". ~/.env"
+alias reloadsecret=". ~/.secrets"

@@ -37,22 +37,31 @@ $RECYCLE.BIN/
 *.rbc
 *.sassc
 .sass-cache
+.cache
 .rspec
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/**/*
-!/tmp/restart.txt
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/spec/tmp/*
+.bundle
+bin/*
+vendor/bundle
+log/*
+db/*.sqlite3
+db/*.sqlite3-journal
+spec/tmp/*
 **.orig
 rerun.txt
 pickle-email-*.html
 !.keep
 !.rspec
 .svn/
+**/tmp/**/*
+**/log/**/*
 
 # Perl test
 debug.txt
 save.txt
+
+# ctags
+tags
+.tags
+.ctags/
+
+tmp.sh

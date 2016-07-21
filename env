@@ -1,13 +1,16 @@
 # include sbin?
 if [ `echo $PATH|grep -c sbin` -eq 0 ]; then
-  export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/sbin"
+  export PATH="${PATH}:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
 fi
 
 # console
 export LANG=ja_JP.UTF-8
-export EDITOR=vim
 export PAGER=less
-export MAKEOPTS="-j`grep -c processor /proc/cpuinfo`"
+
+# editor
+export EDITOR=vim
+export SVN_EDITOR=vim
+export BUNDLER_EDITOR=vim
 
 # zsh
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -19,3 +22,46 @@ export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 # oss
 export GITHUB_REPOS_PATH=/opt/github
 
+# mailcatcher
+export TRUSTED_IP=192.168.2.1
+
+
+# dependency base system
+case `uname` in
+  Linux)
+    export MAKEOPTS="-j`grep -c processor /proc/cpuinfo`"
+    # rbenv
+    export RBENV_ROOT="${HOME}/.rbenv"
+    export PATH="${RBENV_ROOT}/bin:${PATH}"
+    ;;
+  Darwin)
+    export MAKEOPTS="-j`system_profiler SPHardwareDataType|grep -i cores|sed -e 's/ //g'|cut -d':' -f2`"
+    # rbenv
+    export RBENV_ROOT="`brew --prefix rbenv`"
+    ;;
+esac
+case $CURRENT_OS in
+  Ubuntu)
+    ### Added by the Heroku Toolbelt
+    export PATH="/usr/local/heroku/bin:$PATH"
+    # go
+    export GOROOT=/opt/github/go
+    export GOPATH=$GOROOT/bin
+    export GOARCH=amd64
+    export GOOS=linux
+    export PATH="${PATH}:${GOPATH}"
+    ;;
+  CentOS)
+    # tokyocabinet
+    export TOKYOCABINET_HOST=localhost
+    export TOKYOCABINET_PORT=11978
+    ;;
+  MacOS)
+    ### Added by the Heroku Toolbelt
+    export PATH="/usr/local/heroku/bin:$PATH"
+    # bsd to gnu
+    export PATH="`brew --prefix coreutils`/libexec/gnubin:$PATH"
+    # postgres
+    export PGDATA=/usr/local/var/postgres
+    ;;
+esac

@@ -1,0 +1,10 @@
+--exclude=.git
+--exclude=.svn
+--exclude=.tmp
+--exclude=.log
+--exclude=.doc
+--exclude=.bin
+--exclude=.doc
+--exclude=.dao
+--exclude=.cache
+--exclude=*.js

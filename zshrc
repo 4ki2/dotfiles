@@ -1,26 +1,37 @@
+# check os
+CURRENT_OS=`uname -s`
+if [ -f /etc/issue ]; then
+  CURRENT_OS=`head -n 1 /etc/issue`
+else
+  CURRENT_OS=`uname`
+fi
+case $CURRENT_OS in
+  Ubuntu*) export CURRENT_OS=Ubuntu;;
+  CentOS*) export CURRENT_OS=CentOS;;
+  Darwin*) export CURRENT_OS=MacOS;;
+esac
+
 # environments
-if [ -f ~/.env ]; then
-  . ~/.env
+if [ -f ~/.env ]; then; . ~/.env; fi
+
+# direnv
+if [ -d ~/.envs ]; then
+  eval "$(direnv hook zsh)"
 fi
 
 # aliases
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
+if [ -f ~/.aliases ]; then; . ~/.aliases; fi
 
 # secrets
-if [ -f ~/.secrets ]; then
-  . ~/.secrets
-fi
+if [ -f ~/.secrets ]; then; . ~/.secrets; fi
 
 # for Ctrl-Shift
 stty -ixon -ixoff
 
 # Set up the prompt
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
+# autoload -Uz promptinit
+# promptinit
+# prompt adam1
 # RPROMPT="%{${fg[blue]}%}%{${reset_color}%}"
 
 autoload -Uz vcs_info
@@ -91,12 +102,18 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# direnv
-if [ -d ~/.envs ]; then
-  eval "$(direnv hook zsh)"
+# tmux (Macをホストで使うのでtmuxの重複を避ける)
+if [ `uname` = 'Linux' ]; then
+  # hub (github's git wrapper)
+  if [ -d $GITHUB_REPOS_PATH/hub ]; then
+    fpath=(~/.zsh/completions $fpath)
+    eval "$(hub alias -s)"
+    autoload -Uz compinit && compinit
+  fi
+  if [ $SHLVL = 1 ]; then
+    tmux attach || tmux -f $HOME/.tmux.conf
+  fi
+else
+  eval "$(hub alias -s)"
 fi
 
-# tmux
-if [ $SHLVL = 1 ]; then
-  tmux attach || tmux -f $HOME/.tmux.conf
-fi
