@@ -44,11 +44,9 @@ case $CURRENT_OS in
   Ubuntu)
     ### Added by the Heroku Toolbelt
     export PATH="/usr/local/heroku/bin:$PATH"
-    # go
-    export GOROOT=/opt/github/go
+    # go for apt install (ref: go env)
+    export GOROOT=/usr/lib/go
     export GOPATH=$GOROOT/bin
-    export GOARCH=amd64
-    export GOOS=linux
     export PATH="${PATH}:${GOPATH}"
     ;;
   CentOS)

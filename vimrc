@@ -1,70 +1,54 @@
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+  set nocompatible
 endif
+set runtimepath+=~/.vim/repos/github.com/Shougo/dein.vim
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
+call dein#begin(expand('~/.vim'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+"### Shougo
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/vimshell')
+call dein#add('Shougo/vimfiler')
+call dein#add('Shougo/unite.vim')
 
-" Add or remove your Bundles here:
-NeoBundle 'Shougo/neosnippet.vim'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/unite.vim' " for vimfiler
-NeoBundle 'Shougo/neocomplete.vim'
+"### tpope
+call dein#add('tpope/vim-fugitive')
+call dein#add('tpope/vim-endwise')
+call dein#add('tpope/vim-surround')
+call dein#add('tpope/vim-rails')
 
 "### github (filer/search)
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'majutsushi/tagbar'
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('flazz/vim-colorschemes')
+call dein#add('majutsushi/tagbar')
 
 "### vim-scripts repos
-NeoBundle 'sudo.vim'
-NeoBundle 'ruby-matchit'
+call dein#add('sudo.vim')
+call dein#add('ruby-matchit')
 
 "### github (editing)
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tomtom/tcomment_vim'
-"NeoBundle 'tyru/caw.vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'soramugi/auto-ctags.vim'
-NeoBundle 'ain/vim-capistrano'
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('soramugi/auto-ctags.vim')
+call dein#add('ain/vim-capistrano')
 
 "### github (syntax)
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'slim-template/vim-slim'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'othree/html5.vim'
-" NeoBundle 'scrooloose/syntastic' " 煩わしい
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'vim-scripts/AnsiEsc.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-" NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'AndrewRadev/switch.vim'
+call dein#add('vim-ruby/vim-ruby')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('kchmck/vim-coffee-script')
+call dein#add('slim-template/vim-slim')
+call dein#add('othree/html5.vim')
+call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('vim-scripts/AnsiEsc.vim')
+call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('AndrewRadev/switch.vim')
 
-"
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-command! Nbl :NeoBundleList
-command! Nbi :NeoBundleInstall
-command! Nbu :NeoBundleInstall!
-command! Reload :source ~/.vimrc
-NeoBundleCheck " Installation check.
+call dein#end()
 
 syntax on
 set wildmenu
@@ -374,12 +358,3 @@ autocmd FileType ruby setlocal tags=.ctags/ruby.tags
 
 " nginx syntax highlighting
 autocmd BufRead,BufNewFile *.nginx,/etc/nginx/*.conf,/etc/nginx/conf.d/* setfiletype nginx
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck

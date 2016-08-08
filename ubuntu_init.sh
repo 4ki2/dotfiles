@@ -13,8 +13,7 @@ ln -s $PWD/zshrc ~/.zshrc
 
 sudo aptitude -y install build-essential automake golang-go language-pack-ja libevent-dev ncurses-dev lua5.2 liblua5.2-dev libssl-dev libxml2-dev libxslt-dev libffi-dev zsh colordiff
 sudo update-locale LANG=ja_JP.UTF-8
-echo "Asia/Tokyo" | sudo tee /etc/timezone
-sudo dpkg-reconfigure --frontend noninteractive tzdata
+sudo timedatectl set-timezone Asia/Tokyo
 sudo update-alternatives --remove editor /usr/bin/vim.basic
 sudo update-alternatives --remove editor /usr/bin/vim.tiny
 sudo aptitude remove vim vim-tiny vim-common ubuntu-minimal nano tmux
@@ -35,7 +34,7 @@ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.s
 vim +:NeoBundleInstall +:q
 cd ..
 
-git clone --depth 1 git://git.code.sf.net/p/tmux/tmux-code tmux
+git clone https://github.com/tmux/tmux.git
 cd tmux
 configuretmux
 make
