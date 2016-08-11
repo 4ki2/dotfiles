@@ -9,7 +9,7 @@
 ## Installation
 
 1. Check out
-```
+ ```shell
 $ git clone git@github.com:4ki2/dotfiles.git
 $ cd dotfiles
 $ git submodule init
@@ -17,7 +17,7 @@ $ git submodule update
 ```
 
 2. Do like this
-```shell
+ ```shell
 #!/bin/sh
 for f in `cat <<_END_OF_FILES_
 ctags
@@ -46,7 +46,7 @@ exit
 ```
 
 3. *(optional)* As you like
-```shell
+ ```shell
 cd zsh/repos/hub
 ./script/build -o /usr/local/bin/hub
 ```
