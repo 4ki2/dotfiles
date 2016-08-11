@@ -50,6 +50,10 @@ call dein#add('AndrewRadev/switch.vim')
 
 call dein#end()
 
+if dein#check_install()
+  call dein#install()
+endif
+
 syntax on
 set wildmenu
 

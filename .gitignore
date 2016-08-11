@@ -1,0 +1,9 @@
+/vim/.dein
+/vim/merged
+/vim/rollbacks
+/vim/repos/*
+!/vim/repos/github.com
+/vim/repos/github.com/*
+!/vim/repos/github.com/Shougo
+/vim/repos/github.com/Shougo/*
+!/vim/repos/github.com/Shougo/dein.vim

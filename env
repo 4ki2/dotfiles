@@ -19,31 +19,26 @@ export ZLS_COLORS=$LS_COLORS
 export CLICOLOR=true
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
-# oss
-export GITHUB_REPOS_PATH=/opt/github
-
-# mailcatcher
-export TRUSTED_IP=192.168.2.1
-
-
 # dependency base system
-case `uname` in
-  Linux)
+case $OSTYPE in
+  darwin*)
+    export CURRENT_OS=`uname`
+    export MAKEOPTS="-j`system_profiler SPHardwareDataType|grep -i cores|sed -e 's/ //g'|cut -d':' -f2`"
+    # rbenv
+    export RBENV_ROOT="`brew --prefix rbenv`"
+    # bsd to gnu
+    export PATH="`brew --prefix coreutils`/libexec/gnubin:$PATH"
+    ;;
+  linux-gnu)
+    export CURRENT_OS=`head -n 1 /etc/issue|cut -d' ' -f1`
     export MAKEOPTS="-j`grep -c processor /proc/cpuinfo`"
     # rbenv
     export RBENV_ROOT="${HOME}/.rbenv"
     export PATH="${RBENV_ROOT}/bin:${PATH}"
     ;;
-  Darwin)
-    export MAKEOPTS="-j`system_profiler SPHardwareDataType|grep -i cores|sed -e 's/ //g'|cut -d':' -f2`"
-    # rbenv
-    export RBENV_ROOT="`brew --prefix rbenv`"
-    ;;
 esac
 case $CURRENT_OS in
   Ubuntu)
-    ### Added by the Heroku Toolbelt
-    export PATH="/usr/local/heroku/bin:$PATH"
     # go for apt install (ref: go env)
     export GOROOT=/usr/lib/go
     export GOPATH=$GOROOT/bin
@@ -54,12 +49,14 @@ case $CURRENT_OS in
     export TOKYOCABINET_HOST=localhost
     export TOKYOCABINET_PORT=11978
     ;;
-  MacOS)
-    ### Added by the Heroku Toolbelt
-    export PATH="/usr/local/heroku/bin:$PATH"
-    # bsd to gnu
-    export PATH="`brew --prefix coreutils`/libexec/gnubin:$PATH"
-    # postgres
-    export PGDATA=/usr/local/var/postgres
-    ;;
 esac
+
+# Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# OSS
+export GITHUB_REPOS_PATH=/opt/github
+
+# mailcatcher
+export TRUSTED_IP=192.168.2.1
+
