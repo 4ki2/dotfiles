@@ -7,6 +7,7 @@
 - dircolors
 
 ## Installation
+
 1. Check out
 ```
 $ git clone git@github.com:4ki2/dotfiles.git
@@ -14,6 +15,7 @@ $ cd dotfiles
 $ git submodule init
 $ git submodule update
 ```
+
 2. Do like this
 ```shell
 #!/bin/sh
@@ -42,6 +44,7 @@ _END_OF_DIRS_`; do
 done
 exit
 ```
+
 3. *(optional)* As you like
 ```shell
 cd zsh/repos/hub
