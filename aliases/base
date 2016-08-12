@@ -37,8 +37,12 @@ alias du="du -h --max-depth=1"
 # archive
 alias tgz="tar cz --exclude-vcs"
 
-# consoles
+# history
 alias h=history
+alias ha="history -E 1"
+alias grh="ha|grep"
+
+# clear
 alias cl=clear
 alias cle=cl
 alias clea=cl
