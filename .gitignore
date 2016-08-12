@@ -1,5 +1,6 @@
 /vim/.dein
 /vim/merged
+/vim/temp
 /vim/rollbacks
 /vim/repos/*
 !/vim/repos/github.com
