@@ -1,0 +1,4 @@
+alias reloadrc=". ~/.zshrc"
+alias reloadenv=". ~/.env"
+alias reloadsecret=". ~/.secrets"
+

@@ -362,3 +362,7 @@ autocmd FileType ruby setlocal tags=.ctags/ruby.tags
 
 " nginx syntax highlighting
 autocmd BufRead,BufNewFile *.nginx,/etc/nginx/*.conf,/etc/nginx/conf.d/* setfiletype nginx
+
+" ヤンクの内容や、選択した内容をクリップボードに格納する。
+set clipboard=unnamed,autoselect
+

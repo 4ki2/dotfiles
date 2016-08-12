@@ -1,0 +1,9 @@
+# direnv
+alias da="direnv allow"
+
+# nkf
+alias nkf="nkf -w --no-best-fit-chars" # overwrite
+
+# heroku
+alias helog="heroku logs --tail"
+

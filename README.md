@@ -5,6 +5,10 @@
 - rbenv
 - direnv
 - dircolors
+- pmtools (centos)
+- gnubin (darwin)
+
+and so on.
 
 ## Installation
 
