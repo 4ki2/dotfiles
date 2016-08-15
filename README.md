@@ -35,7 +35,7 @@ tmux.conf
 vimrc
 zshrc
 _END_OF_FILES_`; do
-  rm -i ~/.$f
+  rm -f ~/.$f
   ln -s $PWD/$f ~/.$f
 done
 for d in `cat <<_END_OF_DIRS_
@@ -43,7 +43,7 @@ aliases
 vim
 zsh
 _END_OF_DIRS_`; do
-  rm -ri ~/.$d
+  rm -rf ~/.$d
   ln -s $PWD/$d ~/.$d
 done
 exit

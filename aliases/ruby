@@ -33,4 +33,47 @@ if [ $RBENV_ROOT ]; then
 
   # mailcatcher
   alias mailcatcher="mailcatcher --http-ip `ip|tail -n 1`"
+
+  # unicorn controller by rails development
+  unicorn-railsdev() {
+    pid=tmp/pids/unicorn.pid
+    cnf=config/unicorn_development.rb
+    if [ ! -f $cnf ]; then
+      echo "No file. $cnf"
+      if [ -f $pid ]; then
+        echo "But, unicorn running..."
+        echo "unicorn-rails kill"
+        kill `cat $pid`
+      fi
+      continue
+    fi
+    if [ -f $pid ]; then
+      case $1 in
+        stop)
+          echo "unicorn-rails $1"
+          kill `cat $pid`
+          rm -f $pid
+          ;;
+        restart)
+          echo "unicorn-rails $1"
+          kill -s USR2 `cat $pid`
+          ;;
+        *)
+          echo "nothing to do"
+      esac
+    else
+      case $1 in
+        start|restart)
+          echo "unicorn-rails $1"
+          rm -f log/*.log
+          if [ -f .envrc ]; then
+            source .envrc
+          fi
+          bundle exec unicorn_rails -c $cnf -D
+          ;;
+        *)
+          echo "nothing to do"
+      esac
+    fi
+  }
 fi
