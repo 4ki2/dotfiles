@@ -77,7 +77,10 @@ if [ $RBENV_ROOT ]; then
     fi
   }
 
-  alias pidstat-unicorn="pidstat -p $(ps -ef|grep [u]nicorn|cut -d' ' -f3|xargs echo|sed 's/\s\+/,/g')"
+  alias unicorn-pids="ps -ef|grep [u]nicorn|tr -s ' '|cut -d' ' -f2|xargs echo|sed 's/\s\+/,/g'"
+  pidstat-unicorn(){
+    pidstat -p `unicorn-pids` $*
+  }
   alias pidstat-unicorn-mem="pidstat-unicorn -r"
 
 fi
