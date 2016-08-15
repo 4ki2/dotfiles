@@ -34,7 +34,7 @@ if [ $RBENV_ROOT ]; then
   # mailcatcher
   alias mailcatcher="mailcatcher --http-ip `ip|tail -n 1`"
 
-  # unicorn controller by rails development
+  # unicorn controller for rails development
   unicorn-railsdev() {
     pid=tmp/pids/unicorn.pid
     cnf=config/unicorn_development.rb
@@ -45,7 +45,7 @@ if [ $RBENV_ROOT ]; then
         echo "unicorn-rails kill"
         kill `cat $pid`
       fi
-      continue
+      return
     fi
     if [ -f $pid ]; then
       case $1 in
