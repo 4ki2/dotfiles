@@ -7,14 +7,21 @@ call dein#begin(expand('~/.vim'))
 
 "### Shougo
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/unite.vim')
+
+"# completion
+call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neosnippet')
 call dein#add('Shougo/neosnippet-snippets')
+call dein#add('ujihisa/neco-look')
+
+"# shell
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 call dein#add('Shougo/vimshell')
+
+"# file-explorer
 call dein#add('Shougo/vimfiler')
-call dein#add('Shougo/unite.vim')
 
 "### tpope
 call dein#add('tpope/vim-endwise')
@@ -46,6 +53,7 @@ call dein#add('nathanaelkane/vim-indent-guides')
 call dein#add('vim-scripts/AnsiEsc.vim')
 call dein#add('bronson/vim-trailing-whitespace')
 call dein#add('AndrewRadev/switch.vim')
+call dein#add('yosssi/vim-ace')
 
 call dein#end()
 

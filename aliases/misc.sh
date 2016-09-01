@@ -7,8 +7,8 @@ alias nkf="nkf -w --no-best-fit-chars" # overwrite
 # heroku
 alias helog="heroku logs --tail"
 
-# git hub page (jekyll)
-alias jks="bundle exec jekyll serve"
+# jekyll
+alias jks="bundle exec jekyll serve -w"
 jknp(){ # "j"e"k"yll "n"ew "p"ost
   if [ ! -d _posts ]; then
     echo "not in jekyll" >&2
@@ -23,7 +23,12 @@ cat <<_JEKYLL_PARAMS_ > _posts/$(date +%Y-%m-%d)-$1.md
 layout: post
 title:  $1
 date:   $(date +"%Y-%m-%d %H:%M:%S") +0900
-categories: $(echo $1|tr -s '-' ' ')
+categories: blog
+tags: $(echo $1|tr -s '-' ' ')
 ---
 _JEKYLL_PARAMS_
 }
+
+# hugo
+alias hugoserv="hugo server -w --ignoreCache -v"
+#"sass --watch static/scss:static/css"

@@ -11,7 +11,7 @@ if [ $RBENV_ROOT ]; then
   alias rbrehash="rbenv rehash"
 
   # gem
-  alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`case $(rv) in 1.9.*) echo 1.9.1;; 2.1.*) echo 2.1.0;; 2.2.*) echo 2.2.0;; *) rv|cut -d'p' -f1;; esac`/gems"
+  alias gems="echo `rbenv which ruby|sed -e 's/bin\/ruby//'`lib/ruby/gems/`rv|cut -d'p' -f1|sed "s/\([0-9]\.[0-9]\.\).*/\10/"`/gems"
   alias gemupdate="gem cleanup; gem update --system; rbenv rehash; gem update; rbenv rehash; gem pristine --all; rbenv rehash"
   alias gemenv="gem env"
   alias cdgems="cd `gems`"
