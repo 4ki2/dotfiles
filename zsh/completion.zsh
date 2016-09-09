@@ -2,7 +2,7 @@
 fpath=(~/.zsh/completions $fpath)
 
 autoload -Uz compinit
-compinit
+compinit -u
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate

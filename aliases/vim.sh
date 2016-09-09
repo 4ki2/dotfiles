@@ -6,7 +6,7 @@ alias -s erb=vim
 alias -s slim=vim
 alias -s yml=vim
 
-alias vim="vim -p"
+alias vim="/usr/local/bin/vim -p"
 alias v=vim
 alias vi=vim
 alias va="vim ~/.aliases"
