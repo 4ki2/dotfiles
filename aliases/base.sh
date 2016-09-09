@@ -33,6 +33,7 @@ alias ll="ls -alh"
 
 # monitor
 alias du="du -h --max-depth=1"
+alias time-mem="/usr/bin/time -f '%Us %M KB'"
 
 # archive
 alias tgz="tar cz --exclude-vcs"

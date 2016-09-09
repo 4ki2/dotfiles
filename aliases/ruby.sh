@@ -31,9 +31,6 @@ if [ $RBENV_ROOT ]; then
   alias railsclear="bundle exec rake assets:clean; bundle exec rake tmp:clear; bundle exec rake log:clear"
   alias sidekiq="bundle exec sidekiq -C config/sidekiq.yml"
 
-  # mailcatcher
-  alias mailcatcher="mailcatcher --http-ip `ip|tail -n 1`"
-
   # unicorn controller for rails development
   unicorn-railsdev() {
     pid=tmp/pids/unicorn.pid
