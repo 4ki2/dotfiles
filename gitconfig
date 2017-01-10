@@ -27,11 +27,17 @@
   ds="diff --stat --name-only"
   dc="diff --cached"
   dcs="diff --cached --stat --name-only"
+  da="diff --diff-filter=A" #追加
+  # dc="diff --diff-filter=C" #コピー
+  dd="diff --diff-filter=D" #削除
+  dm="diff --diff-filter=M" #マージ(更新)
+  dr="diff --diff-filter=R" #リネーム
   f="fetch"
   fs="fsck"
   gc="gc"
-  l="log --graph"
-  ls="log --graph --stat"
+  l="log --graph --no-merges"
+  lg="log --graph"
+  ls="log --graph --stat --no-merges"
   m="merge"
   o="checkout"
   om="checkout master"

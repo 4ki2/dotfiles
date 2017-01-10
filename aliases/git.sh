@@ -15,3 +15,5 @@ git-last-editors() {
     git blame $f|head -n1
   done
 }
+# remove all dangling commits
+alias gdd="g reflog expire --expire=now --all; g gc --prune=now"
