@@ -47,7 +47,8 @@ db/*.sqlite3
 db/*.sqlite3-journal
 spec/tmp/*
 **.orig
-rerun.txt
+**.rej
+eerun.txt
 pickle-email-*.html
 !.keep
 !.rspec

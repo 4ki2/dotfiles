@@ -39,7 +39,7 @@ if [ $RBENV_ROOT ]; then
       echo "No file. $cnf"
       if [ -f $pid ]; then
         echo "But, unicorn running..."
-        echo "unicorn-rails kill"
+        echo "unicorn_rails kill"
         kill `cat $pid`
       fi
       return
@@ -47,12 +47,12 @@ if [ $RBENV_ROOT ]; then
     if [ -f $pid ]; then
       case $1 in
         stop)
-          echo "unicorn-rails $1"
+          echo "unicorn_rails $1"
           kill `cat $pid`
           rm -f $pid
           ;;
         restart)
-          echo "unicorn-rails $1"
+          echo "unicorn_rails $1"
           kill -s USR2 `cat $pid`
           ;;
         *)
@@ -61,7 +61,7 @@ if [ $RBENV_ROOT ]; then
     else
       case $1 in
         start|restart)
-          echo "unicorn-rails $1"
+          echo "unicorn_rails $1"
           rm -f log/*.log
           if [ -f .envrc ]; then
             source .envrc

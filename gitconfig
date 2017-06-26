@@ -2,6 +2,8 @@
 #  pager="less -r"
   editor=vim
   excludesfile = ~/.gitignore
+[diff]
+  compactionHeuristic=true
 [color]
   status=auto
   diff=auto
@@ -24,6 +26,7 @@
   cm="commit -m"
   cp="cherry-pick"
   d="diff"
+  dn="diff --name-only"
   ds="diff --stat --name-only"
   dc="diff --cached"
   dcs="diff --cached --stat --name-only"
