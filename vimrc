@@ -29,8 +29,9 @@ call dein#add('tpope/vim-surround')
 call dein#add('tpope/vim-rails')
 
 "### vim-scripts repos
-call dein#add('sudo.vim')
-call dein#add('ruby-matchit')
+" call dein#add('sudo.vim')
+" call dein#add('ruby-matchit')
+" call dein#add('vim-scripts/AnsiEsc.vim')
 
 "### filer/search
 call dein#add('ctrlpvim/ctrlp.vim')
@@ -50,10 +51,11 @@ call dein#add('kchmck/vim-coffee-script')
 call dein#add('slim-template/vim-slim')
 call dein#add('othree/html5.vim')
 call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('vim-scripts/AnsiEsc.vim')
 call dein#add('bronson/vim-trailing-whitespace')
 call dein#add('AndrewRadev/switch.vim')
 call dein#add('yosssi/vim-ace')
+call dein#add('fatih/vim-go')
+call dein#add('sunaku/vim-ruby-minitest')
 
 call dein#end()
 

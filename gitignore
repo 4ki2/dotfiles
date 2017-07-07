@@ -65,4 +65,5 @@ tags
 .tags
 .ctags/
 
-tmp.sh
+# glide
+vendor/
