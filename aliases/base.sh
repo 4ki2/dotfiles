@@ -8,7 +8,7 @@ alias rm="rm -i"
 alias xargs="xargs -n 256"
 
 # diff
-alias d="colordiff -Z"
+alias d=colordiff
 alias dr="colordiff -r"
 alias drx="colordiff -r --exclude='.*'"
 

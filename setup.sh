@@ -6,7 +6,6 @@ gemrc
 gitconfig
 gitignore
 irbrc
-rspec
 tmux.conf
 vimrc
 zshrc
