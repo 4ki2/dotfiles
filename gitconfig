@@ -41,6 +41,7 @@
   l="log --graph --no-merges"
   lg="log --graph"
   ls="log --graph --stat --no-merges"
+  l1="log --oneline --no-merges"
   m="merge"
   o="checkout"
   om="checkout master"
