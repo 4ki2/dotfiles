@@ -11,6 +11,7 @@ alias xargs="xargs -n 256"
 alias d=colordiff
 alias dr="colordiff -r"
 alias drx="colordiff -r --exclude='.*'"
+alias drcr="colordiff -r --exclude='.*' --strip-trailing-cr"
 
 # less
 alias less="less -r"

@@ -15,3 +15,6 @@ nnoremap <silent><S-Tab> <<
 vnoremap <silent><Tab> >gv
 vnoremap <silent><S-Tab> <gv
 
+filetype plugin on
+filetype indent on
+autocmd FileType php setlocal noexpandtab
