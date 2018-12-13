@@ -30,8 +30,9 @@ call dein#add('tpope/vim-rails')
 
 "### vim-scripts repos
 " call dein#add('sudo.vim')
-" call dein#add('ruby-matchit')
 " call dein#add('vim-scripts/AnsiEsc.vim')
+call dein#add('vim-scripts/ruby-matchit')
+call dein#add('blueyed/smarty.vim') " fork
 
 "### filer/search
 call dein#add('ctrlpvim/ctrlp.vim')
@@ -43,6 +44,7 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('soramugi/auto-ctags.vim')
 call dein#add('ain/vim-capistrano')
+" call dein#add('jwhitley/vim-matchit')
 
 "### syntax
 call dein#add('vim-ruby/vim-ruby')
@@ -56,6 +58,7 @@ call dein#add('AndrewRadev/switch.vim')
 call dein#add('yosssi/vim-ace')
 call dein#add('fatih/vim-go')
 call dein#add('sunaku/vim-ruby-minitest')
+" call dein#add('valloric/matchtagalways')
 
 call dein#end()
 

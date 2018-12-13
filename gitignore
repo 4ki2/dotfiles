@@ -66,4 +66,10 @@ tags
 .ctags/
 
 # glide
-vendor/
+#vendor/
+
+# php
+smarty_cache/
+**/rootdocs/img
+**/rootdocs/css
+**/rootdocs/js

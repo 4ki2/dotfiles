@@ -23,10 +23,10 @@ if [ -f ~/.secrets ]; then
   . ~/.secrets
 fi
 
-# hub (github's git wrapper)
-if [ ! -z `command -v hub` ]; then
-  eval "$(hub alias -s)"
-fi
+# # hub (github's git wrapper)
+# if [ ! -z `command -v hub` ]; then
+#   eval "$(hub alias -s)"
+# fi
 
 # tmux (ssh to Linux from MacOS)
 if [ "$OSTYPE" == "linux-gnu" ]; then

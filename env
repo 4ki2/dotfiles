@@ -6,7 +6,11 @@ fi
 ##--- console
 export LANG=ja_JP.UTF-8
 export PAGER=less
-#export CC=gcc
+# export CC=gcc
+# export CC=gcc
+# export CFLAGS=''
+# export CXXFLAGS=''
+# export CPPFLAGS=''
 
 ##--- editor
 export EDITOR=vim
@@ -21,8 +25,8 @@ export CLICOLOR=true
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 
 ##--- dependency base system
-case $OSTYPE in
-  darwin*)
+case $CURRENT_OS in
+  Darwin)
     export CURRENT_OS=`uname`
     export MAKEOPTS="-j`system_profiler SPHardwareDataType|grep -i cores|sed -e 's/ //g'|cut -d':' -f2`"
     # rbenv
@@ -30,26 +34,27 @@ case $OSTYPE in
     # bsd to gnu
     export PATH="`brew --prefix coreutils`/libexec/gnubin:$PATH"
     ;;
-  linux-gnu)
+  Ubuntu)
     export CURRENT_OS=`head -n 1 /etc/issue|cut -d' ' -f1`
     export MAKEOPTS="-j`grep -c processor /proc/cpuinfo`"
     # rbenv
     #export RBENV_ROOT="${HOME}/.rbenv" rootアカウントだと不能だったからかな？
     export RBENV_ROOT="/opt/github/rbenv"
     export PATH="${RBENV_ROOT}/bin:${PATH}"
-    ;;
-esac
-case $CURRENT_OS in
-  Ubuntu)
     # go for apt install (ref: go env)
     export GOROOT=/usr/lib/go
     export GOPATH=$GOROOT/bin
     export PATH="${PATH}:${GOPATH}"
     ;;
   CentOS)
+    export CURRENT_OS=`head -n 1 /etc/issue|cut -d' ' -f1`
+    export MAKEOPTS="-j`grep -c processor /proc/cpuinfo`"
+    # rbenv (ローカルアカウントでrubyの開発はしないため基本的にツールの利用なのでsystemにインストールする)
+    # export RBENV_ROOT="${HOME}/.rbenv"
+    # export PATH="${RBENV_ROOT}/bin:${PATH}"
     # tokyocabinet
-    export TOKYOCABINET_HOST=localhost
-    export TOKYOCABINET_PORT=11978
+    # export TOKYOCABINET_HOST=localhost
+    # export TOKYOCABINET_PORT=11978
     ;;
 esac
 
@@ -60,5 +65,5 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export GITHUB_REPOS_PATH=/opt/github
 
 ##--- mailcatcher
-export TRUSTED_IP=192.168.2.1
+# export TRUSTED_IP=192.168.2.1
 

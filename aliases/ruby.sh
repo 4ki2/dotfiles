@@ -1,7 +1,9 @@
 if [ $RBENV_ROOT ]; then
 
   # rbenv
-  eval "$(rbenv init -)"
+  if [ "$CURRENT_OS" != "CentOS" ]; then
+    eval "$(rbenv init -)"
+  fi
   source $RBENV_ROOT/completions/rbenv.zsh
   alias rv="ruby -v|cut -d' ' -f2"
   rch() { rbenv local $1; rbenv rehash; . ~/.aliases}
