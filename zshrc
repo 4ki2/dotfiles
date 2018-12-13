@@ -2,6 +2,7 @@ stty -ixon -ixoff # C-s C-q
 cdpath=(.. ~)
 
 # environments
+typeset -U PATH
 . ~/.env
 eval "$(direnv hook zsh)"
 
@@ -33,3 +34,7 @@ if [ "$OSTYPE" == "linux-gnu" ]; then
     tmux attach || tmux -f $HOME/.tmux.conf
   fi
 fi
+
+# root/bin
+PATH=/root/bin:${PATH}
+
