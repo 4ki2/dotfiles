@@ -36,7 +36,6 @@ call dein#add('blueyed/smarty.vim') " fork
 
 "### filer/search
 call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('flazz/vim-colorschemes')
 call dein#add('majutsushi/tagbar')
 
 "### editing
@@ -59,6 +58,8 @@ call dein#add('yosssi/vim-ace')
 call dein#add('fatih/vim-go')
 call dein#add('sunaku/vim-ruby-minitest')
 " call dein#add('valloric/matchtagalways')
+" call dein#add('flazz/vim-colorschemes')
+" call dein#add('tomasr/molokai')
 
 call dein#end()
 

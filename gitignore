@@ -41,7 +41,7 @@ $RECYCLE.BIN/
 .rspec
 .bundle
 bin/*
-vendor/bundle
+# vendor/bundle
 log/*
 db/*.sqlite3
 db/*.sqlite3-journal
@@ -73,3 +73,4 @@ smarty_cache/
 **/rootdocs/img
 **/rootdocs/css
 **/rootdocs/js
+

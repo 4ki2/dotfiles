@@ -12,4 +12,4 @@ vnoremap C "_C
 
 "# yank to clipboard
 set clipboard=unnamed,autoselect
-
+set viminfo='50,<1000,s100,h

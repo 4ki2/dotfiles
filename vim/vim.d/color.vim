@@ -1,5 +1,6 @@
 "### colorscheme
 set background=dark
+" colorscheme molokai
 " colorscheme darkblue
 " colorscheme delek
 " colorscheme elflord
@@ -13,7 +14,7 @@ set background=dark
 " colorscheme default
 " colorscheme desert
 " colorscheme evening
-colorscheme koehler
+" colorscheme koehler
 " colorscheme murphy
 " colorscheme peachpuff
 " colorscheme shine
@@ -37,4 +38,7 @@ colorscheme koehler
 " autocmd InsertEnter * highlight StatusLine ctermfg=White ctermbg=DarkBlue cterm=none
 " autocmd InsertLeave * highlight StatusLine ctermfg=Black ctermbg=White cterm=none
 
-
+" highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=22
+" highlight DiffDelete cterm=bold ctermfg=10 ctermbg=52
+" highlight DiffChange cterm=bold ctermfg=10 ctermbg=17
+" highlight DiffText   cterm=bold ctermfg=10 ctermbg=21

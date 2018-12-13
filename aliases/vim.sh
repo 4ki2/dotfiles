@@ -11,6 +11,7 @@ alias v=vim
 alias vi=vim
 alias va="vim ~/.aliases"
 alias vc="vim ~/.ssh/config"
+alias vd="vimdiff"
 alias ve="vim ~/.env"
 alias vh="sudo vim /etc/hosts"
 alias vg="vim ~/.gitconfig"
