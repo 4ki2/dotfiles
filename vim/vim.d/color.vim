@@ -2,7 +2,7 @@
 set background=dark
 " colorscheme molokai
 " colorscheme darkblue
-" colorscheme delek
+colorscheme delek
 " colorscheme elflord
 " colorscheme industry
 " colorscheme morning

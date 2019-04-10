@@ -82,4 +82,6 @@ if [ $RBENV_ROOT ]; then
   }
   alias pidstat-unicorn-mem="pidstat-unicorn -r"
 
+  # mailcatcher
+  alias mailcatcher="mailcatcher --http-ip 10.0.2.15"
 fi

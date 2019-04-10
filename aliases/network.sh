@@ -12,5 +12,3 @@ case `uname` in
 
 esac
 
-# mailcatcher
-alias mailcatcher="mailcatcher --http-ip `ip|tail -n 1`"
