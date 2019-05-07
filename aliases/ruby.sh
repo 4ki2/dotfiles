@@ -18,6 +18,7 @@ if [ $RBENV_ROOT ]; then
   alias gemenv="gem env"
   alias cdgems="cd `gems`"
   gemlist() { gem list ^$1\$ --remote --all; }
+  alias gempurge="gem uninstall -aIx"
 
   # rails
   alias development="unset RAILS_ENV"

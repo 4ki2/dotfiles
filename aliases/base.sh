@@ -8,10 +8,14 @@ alias rm="rm -i"
 alias xargs="xargs -n 256"
 
 # diff
-alias d=colordiff
-alias dr="colordiff -r"
-alias drx="colordiff -r --exclude='.*'"
-alias drcr="colordiff -r --exclude='.*' --strip-trailing-cr"
+# alias d=colordiff
+# alias dr="colordiff -r"
+# alias drx="colordiff -r --exclude='.*'"
+# alias drcr="colordiff -r --exclude='.*' --strip-trailing-cr"
+alias d=diff
+alias d="diff -r"
+alias d="diff -r --exclude='.*'"
+alias drcr="diff -r --exclude='.*' --strip-trailing-cr"
 
 # less
 alias less="less -r"
@@ -50,3 +54,12 @@ alias cle=cl
 alias clea=cl
 alias cler=cl
 
+# mount
+resize_ram() {
+  if [ -z "$1" ]; then
+    echo "USAGE: resize_ram <SIZE>"
+    return
+  fi
+  mount -o remount,size=$1 /dev/shm # 90%とか
+  df -h |grep /dev/shm
+}

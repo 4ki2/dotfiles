@@ -65,8 +65,8 @@ tags
 .tags
 .ctags/
 
-# glide
-#vendor/
+# composer
+vendor/
 
 # php
 smarty_cache/
@@ -74,3 +74,6 @@ smarty_cache/
 **/rootdocs/css
 **/rootdocs/js
 
+# Geopla
+tmp_*/
+update-workdir/

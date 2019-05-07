@@ -12,3 +12,8 @@ case `uname` in
 
 esac
 
+# systemctl
+alias stop-nginx="systemctl stop php-fpm.service; systemctl stop nginx.service"
+alias start-nginx="systemctl start php-fpm.service; systemctl start nginx.service"
+alias restart-nginx="systemctl restart php-fpm.service; systemctl restart nginx.service"
+alias status-nginx="systemctl status php-fpm.service; systemctl status nginx.service"

@@ -7,7 +7,7 @@ if [ -f ~/.gitrc ]; then
 fi
 git-last-editors() {
   if [ -z "$1" ]; then
-    echo "usage: git-list-editors path"
+    echo "USAGE: git-list-editors <FILE PATH>"
     return
   fi
   for f in `ls -1 $1`; do
