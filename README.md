@@ -2,13 +2,16 @@
 
 ## Requirement
 - zsh
-- rbenv
+- golang
+- python3-pip
 - direnv
-- dircolors
-- pmtools (centos)
-- gnubin (darwin)
-
 and so on.
+
+### example
+```shell
+sudo apt install build-essential zsh golang python3-pip liblua5.3-dev ncurses-dev direnv
+pip3 install msgpack pynvim
+```
 
 ## Installation
 
@@ -20,37 +23,17 @@ $ git submodule init
 $ git submodule update
 ```
 
-2. Do like this
+2. build hub
  ```shell
-#!/bin/sh
-for f in `cat <<_END_OF_FILES_
-ctags
-env
-gemrc
-gitconfig
-gitignore
-irbrc
-rspec
-tmux.conf
-vimrc
-zshrc
-_END_OF_FILES_`; do
-  rm -f ~/.$f
-  ln -s $PWD/$f ~/.$f
-done
-for d in `cat <<_END_OF_DIRS_
-aliases
-vim
-zsh
-_END_OF_DIRS_`; do
-  rm -rf ~/.$d
-  ln -s $PWD/$d ~/.$d
-done
-exit
+cd submodules/hub
+sudo ./script/build -o /usr/local/bin/hub
+ln -s $PWD/etc/hub.zsh_completion ~/.zsh/completions/_hub
 ```
 
-3. *(optional)* As you like
+3. Choose distribution
+now, only `wsl2`(ubuntu20)
+
+4. Setup
  ```shell
-cd zsh/repos/hub
-./script/build -o /usr/local/bin/hub
+$ ./setup.sh
 ```

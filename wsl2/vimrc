@@ -1,0 +1,118 @@
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/sikier/.vim/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/sikier/.vim')
+  call dein#begin('/home/sikier/.vim')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/sikier/.vim/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('Shougo/neosnippet-snippets')
+
+  " Required:
+
+  "### Shougo
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/unite.vim')
+
+  "# completion
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('ujihisa/neco-look')
+
+  "# shell
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('Shougo/vimshell')
+
+  "# file-explorer
+  call dein#add('Shougo/vimfiler')
+
+  "### tpope
+  call dein#add('tpope/vim-endwise')
+  call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-rails')
+
+  " "### filer/search
+  " call dein#add('ctrlpvim/ctrlp.vim')
+  " call dein#add('majutsushi/tagbar')
+
+  "### editing
+  call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('tomtom/tcomment_vim')
+
+  "### syntax
+  call dein#add('hail2u/vim-css3-syntax')
+  call dein#add('othree/html5.vim')
+  call dein#add('nathanaelkane/vim-indent-guides')
+  call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('AndrewRadev/switch.vim')
+  call dein#add('yosssi/vim-ace')
+  call dein#add('fatih/vim-go')
+  call dein#add('sunaku/vim-ruby-minitest')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+"# encoding
+scriptencoding utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-bom,utf-8,iso-2022-jp,euc-jp,sjis,cp932,cp20932
+set fileformats=unix,dos,mac
+
+"# cursor and scroll
+set nostartofline
+set scrolloff=10
+
+"# line number
+set number
+set numberwidth=4
+
+"# character seek
+set smartcase
+set ignorecase
+set hlsearch
+
+"# backend option
+set shortmess+=I
+set nobackup
+set noswapfile
+set hidden
+set helplang=ja
+set history=100
+
+"# backspace
+set backspace=indent,eol,start
+
+"# brackets
+set showmatch
+
+"### ime
+"# must off when insert mode end
+set imdisable
+imap <silent><ESC> <ESC>:set iminsert=0<CR>
+"# must off when boot
+set iminsert=0 imsearch=0
+"# must off on command mode
+set noimcmdline
+
+runtime! vim.d/*.vim
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif

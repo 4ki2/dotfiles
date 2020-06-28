@@ -1,12 +1,8 @@
 #!/bin/sh
 for f in `cat <<_END_OF_FILES_
-ctags
 env
-gemrc
 gitconfig
 gitignore
-irbrc
-tmux.conf
 vimrc
 zshrc
 _END_OF_FILES_`; do

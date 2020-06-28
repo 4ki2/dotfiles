@@ -1,6 +1,6 @@
-[submodule "vim/repos/github.com/Shougo/dein.vim"]
-	path = vim/repos/github.com/Shougo/dein.vim
+[submodule "submodules/dein.vim"]
+	path = submodules/dein.vim
 	url = https://github.com/Shougo/dein.vim.git
-[submodule "zsh/repos/hub"]
-	path = zsh/repos/hub
+[submodule "submodules/hub"]
+	path = submodules/hub
 	url = https://github.com/github/hub.git
