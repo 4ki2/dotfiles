@@ -11,5 +11,5 @@ vnoremap c "_c
 vnoremap C "_C
 
 "# yank to clipboard
-set clipboard=unnamed,autoselect
-set viminfo='50,<1000,s100,h
+" set clipboard=unnamed,autoselect
+" set viminfo='50,<1000,s100,h

@@ -17,3 +17,4 @@ git-last-editors() {
 }
 # remove all dangling commits
 alias gdd="g reflog expire --expire=now --all; g gc --prune=now"
+

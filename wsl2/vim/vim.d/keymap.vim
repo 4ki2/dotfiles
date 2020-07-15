@@ -1,8 +1,8 @@
 "# tagbar
-nnoremap <silent><F8> :TagbarToggle<CR>
+" nnoremap <silent><F8> :TagbarToggle<CR>
 
 "# vimshell
-nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
+" nnoremap <silent><C-x> :<C-u>VimShellTab<CR>
 
 "# select lines
 nnoremap <silent>vv V

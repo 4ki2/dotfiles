@@ -53,6 +53,13 @@ if dein#load_state('/home/sikier/.vim')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('tomtom/tcomment_vim')
 
+  "### colorscheme
+  " call dein#add('tomasr/molokai')
+  " call dein#add('morhetz/gruvbox')
+  call dein#add('jacoborus/tender')
+  " call dein#add('arcticicestudio/nord-vim')
+  call dein#add('vim-airline/vim-airline')
+
   "### syntax
   call dein#add('hail2u/vim-css3-syntax')
   call dein#add('othree/html5.vim')
@@ -101,14 +108,14 @@ set backspace=indent,eol,start
 "# brackets
 set showmatch
 
-"### ime
-"# must off when insert mode end
-set imdisable
-imap <silent><ESC> <ESC>:set iminsert=0<CR>
-"# must off when boot
-set iminsert=0 imsearch=0
-"# must off on command mode
-set noimcmdline
+" "### ime
+" "# must off when insert mode end
+" set imdisable
+" imap <silent><ESC> <ESC>:set iminsert=0<CR>
+" "# must off when boot
+" set iminsert=0 imsearch=0
+" "# must off on command mode
+" set noimcmdline
 
 runtime! vim.d/*.vim
 

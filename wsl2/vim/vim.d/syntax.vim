@@ -1,6 +1,10 @@
 "### syntax check
 " let g:syntastic_ruby_checkers = ['rubocop']
 
-" autocmd BufWritePre * :%s/\s\+$//ge
+" ### display json doublequated
+set conceallevel=0
 
-set redrawtime=5000
+" ### remove trailing blanks on save
+autocmd BufWritePre * :%s/\s\+$//ge
+
+" set redrawtime=5000

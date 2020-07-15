@@ -4,3 +4,9 @@
 [submodule "submodules/hub"]
 	path = submodules/hub
 	url = https://github.com/github/hub.git
+[submodule "submodules/oh-my-zsh"]
+	path = submodules/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "submodules/bullet-train.zsh"]
+	path = submodules/bullet-train.zsh
+	url = https://github.com/caiogondim/bullet-train.zsh

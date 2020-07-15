@@ -17,4 +17,13 @@ _END_OF_DIRS_`; do
   rm -rf ~/.$d
   ln -s $PWD/$d ~/.$d
 done
-exit
+
+if [ ! -h ~/.oh-my-zsh ]; then
+  cd ../submodules/oh-my-zsh
+  ln -s $(pwd) ~/.oh-my-zsh
+  cd custom/themes
+  ln -s $(readlink -f ../../../bullet-train.zsh/bullet-train.zsh-theme)
+fi
+
+exit;
+
