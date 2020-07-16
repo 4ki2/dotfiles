@@ -18,6 +18,9 @@ _END_OF_DIRS_`; do
   ln -s $PWD/$d ~/.$d
 done
 
+rm -f ~/.ssh/config
+ln -s $PWD/ssh_config ~/.ssh/config
+
 if [ ! -h ~/.oh-my-zsh ]; then
   cd ../submodules/oh-my-zsh
   ln -s $(pwd) ~/.oh-my-zsh

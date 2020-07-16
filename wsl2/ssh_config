@@ -1,0 +1,5 @@
+Include ./*/config
+
+Host *
+ServerAliveInterval 300
+

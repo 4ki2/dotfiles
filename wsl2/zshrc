@@ -116,7 +116,7 @@ BULLETTRAIN_PROMPT_ORDER=(
   # go
   # rust
   # elixir
-  git
+  # git
   # hg
   cmd_exec_time
 )
