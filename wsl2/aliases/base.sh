@@ -12,9 +12,10 @@ alias xargs="xargs -n 256"
 # alias dr="colordiff -r"
 # alias drx="colordiff -r --exclude='.*'"
 # alias drcr="colordiff -r --exclude='.*' --strip-trailing-cr"
-alias d=diff
-alias d="diff -r"
-alias d="diff -r --exclude='.*'"
+alias di=vimdiff
+alias dif=vimdiff
+alias diff=vimdiff
+alias dr="diff -r --exclude='.*'"
 alias drcr="diff -r --exclude='.*' --strip-trailing-cr"
 
 # less

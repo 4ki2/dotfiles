@@ -8,3 +8,6 @@ set conceallevel=0
 autocmd BufWritePre * :%s/\s\+$//ge
 
 " set redrawtime=5000
+
+" ###
+autocmd FileType php setlocal noexpandtab

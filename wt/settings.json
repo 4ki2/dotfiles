@@ -19,6 +19,8 @@
     // If enabled, formatted data is also copied to your clipboard
     "copyFormatting": false,
 
+    "theme": "light",
+
     // A profile specifies a command to execute paired with information about how it should look and feel.
     // Each one of them will appear in the 'New Tab' dropdown,
     //   and can be invoked from the commandline with `wt.exe -p xxx`
@@ -46,9 +48,11 @@
                 "commandline": "wsl.exe ~ -d Ubuntu",
                 "fontFace": "Cascadia Code PL",
                 "fontSize": 12,
+                "antialiasingMode": "cleartype",
                 "colorScheme": "Tango Dark",
-//                "useAcrylic": true,
-//                "acrylicOpacity": 0.7,
+//                "colorScheme": "Frost",
+                "useAcrylic": true,
+                "acrylicOpacity": 0.9,
                 "cursorShape": "filledBox",
                 "closeOnExit":"always"
             },
@@ -74,16 +78,16 @@
         // These two lines additionally bind them to Ctrl+C and Ctrl+V.
         // To learn more about selection, visit https://aka.ms/terminal-selection
         { "command": {"action": "copy", "singleLine": false }, "keys": "ctrl+c" },
-        { "command": "paste", "keys": "ctrl+v" },
-        { "command":"newTab", "keys": ["Ctrl+t"]},
+//        { "command": "paste", "keys": "ctrl+v" },
+//        { "command": "newTab", "keys": ["Ctrl+t"]},
 
         // Press Ctrl+Shift+F to open the search box
-        { "command": "find", "keys": "ctrl+shift+f" },
+        { "command": "find", "keys": "ctrl+shift+f" }
 
         // Press Alt+Shift+D to open a new pane.
         // - "split": "auto" makes this pane open in the direction that provides the most surface area.
         // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.
         // To learn more about panes, visit https://aka.ms/terminal-panes
-        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
+//        { "command": { "action": "splitPane", "split": "auto", "splitMode": "duplicate" }, "keys": "alt+shift+d" }
     ]
 }
