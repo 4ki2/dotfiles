@@ -8,10 +8,6 @@ alias rm="rm -i"
 alias xargs="xargs -n 256"
 
 # diff
-# alias d=colordiff
-# alias dr="colordiff -r"
-# alias drx="colordiff -r --exclude='.*'"
-# alias drcr="colordiff -r --exclude='.*' --strip-trailing-cr"
 alias di=vimdiff
 alias dif=vimdiff
 alias diff=vimdiff
@@ -37,10 +33,6 @@ alias l="ls -C"
 alias la="ls -A"
 alias ll="ls -alh"
 
-# monitor
-alias du="du -h --max-depth=1"
-alias time-mem="/usr/bin/time -f '%Us %M KB'"
-
 # archive
 alias tgz="tar cz --exclude-vcs"
 
@@ -55,12 +47,17 @@ alias cle=cl
 alias clea=cl
 alias cler=cl
 
-# mount
-resize_ram() {
-  if [ -z "$1" ]; then
-    echo "USAGE: resize_ram <SIZE>"
-    return
-  fi
-  mount -o remount,size=$1 /dev/shm # 90%とか
-  df -h |grep /dev/shm
-}
+# grep
+MY_GREP_OPTIONS="--color=auto -I"
+alias grep="grep $MY_GREP_OPTIONS"
+alias fgrep="fgrep $MY_GREP_OPTIONS"
+alias egrep="egrep $MY_GREP_OPTIONS"
+
+alias gralias="alias|grep -i"
+alias grenv="env|grep -i"
+alias grps="ps aux|grep -i"
+
+# # grep >= 2.5.2 !oh-my-zsh pluin git のエイリアスは使ってないがコンフリクトするので除外しておく
+# function gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log --exclude=tags }
+# function gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log|uniq --exclude=tags }
+

@@ -5,7 +5,7 @@ alias gcn="g config user.name"
 if [ -f ~/.gitrc ]; then
   . ~/.gitrc
 fi
-git-last-editors() {
+function git-last-editors() {
   if [ -z "$1" ]; then
     echo "USAGE: git-list-editors <FILE PATH>"
     return
@@ -15,6 +15,10 @@ git-last-editors() {
     git blame $f|head -n1
   done
 }
+alias ge=git-last-editors
 # remove all dangling commits
 alias gdd="g reflog expire --expire=now --all; g gc --prune=now"
+
+# remnove ghostscript
+alias gs="git status"
 
