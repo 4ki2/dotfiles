@@ -1,5 +1,6 @@
 Include ./*/config
 
 Host *
+GSSAPIAuthentication no
 ServerAliveInterval 300
 

@@ -42,7 +42,6 @@ $RECYCLE.BIN/
 .bundle
 bin/*
 # vendor/bundle
-log/*
 db/*.sqlite3
 db/*.sqlite3-journal
 spec/tmp/*
@@ -53,8 +52,6 @@ pickle-email-*.html
 !.keep
 !.rspec
 .svn/
-**/tmp/**/*
-**/log/**/*
 
 # Perl test
 debug.txt
