@@ -67,9 +67,9 @@ vendor/
 
 # php
 smarty_cache/
-**/rootdocs/img
-**/rootdocs/css
-**/rootdocs/js
+# **/rootdocs/img
+# **/rootdocs/css
+# **/rootdocs/js
 
 # Geopla
 tmp_*/
