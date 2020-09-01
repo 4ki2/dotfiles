@@ -24,6 +24,8 @@ ln -s $PWD/ssh_config ~/.ssh/config
 if [ ! -h ~/.oh-my-zsh ]; then
   cd ../submodules/oh-my-zsh
   ln -s $(pwd) ~/.oh-my-zsh
+  cd custom/plugins
+  ln -s $(readlink -f ../../../zsh-autosuggestions)
   cd custom/themes
   ln -s $(readlink -f ../../../bullet-train.zsh/bullet-train.zsh-theme)
 fi

@@ -32,6 +32,7 @@ alias ls="ls -F --color=auto"
 alias l="ls -C"
 alias la="ls -A"
 alias ll="ls -alh"
+alias l1="ls -a1"
 
 # archive
 alias tgz="tar cz --exclude-vcs"
