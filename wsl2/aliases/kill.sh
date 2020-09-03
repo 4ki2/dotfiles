@@ -1,3 +1,4 @@
+alias k=kill
 alias k1="kill -HUP"      # hang up
 alias k2="kill -INT"      # interrupt
 alias k3="kill -QUIT"     # quit

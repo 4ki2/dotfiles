@@ -1,8 +1,9 @@
-# files
+# file
 alias cp="cp -ip"
-alias cpf="cp --parents" # full path copy
+alias cpf="cp --parents"
 alias mv="mv -i"
 alias rm="rm -i"
+alias cx="chmod +x"
 
 # pipe
 alias xargs="xargs -n 256"
@@ -20,7 +21,8 @@ alias le=less
 alias les=less
 alias lesss=less
 
-# directories
+# file path
+alias cd="cd -P"
 alias p=pwd
 alias ...="../.."
 alias ....="../../.."
@@ -28,7 +30,7 @@ alias .....="../../../.."
 alias ......="../../../../.."
 
 # ls
-alias ls="ls -F --color=auto"
+alias ls="ls -FX --color=auto"
 alias l="ls -C"
 alias la="ls -A"
 alias ll="ls -alh"
@@ -58,7 +60,7 @@ alias gralias="alias|grep -i"
 alias grenv="env|grep -i"
 alias grps="ps aux|grep -i"
 
-# # grep >= 2.5.2 !oh-my-zsh pluin git のエイリアスは使ってないがコンフリクトするので除外しておく
+# # grep >= 2.5.2 !oh-my-zshのgit pluinのエイリアスは使ってないがコンフリクトするので除外しておく
 # function gr() { grep -nriI $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log --exclude=tags }
 # function gl() { grep -riIl $1 . --exclude-dir=.svn --exclude-dir=.git --exclude-dir=log|uniq --exclude=tags }
 

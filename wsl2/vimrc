@@ -67,7 +67,7 @@ if dein#load_state('~/.vim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('AndrewRadev/switch.vim')
   call dein#add('yosssi/vim-ace')
-  call dein#add('fatih/vim-go')
+  " call dein#add('fatih/vim-go')
   call dein#add('sunaku/vim-ruby-minitest')
 
   call dein#end()
