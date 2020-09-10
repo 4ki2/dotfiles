@@ -21,5 +21,8 @@ alias vz="vim $(readlink ~/.zshrc)"
 alias vh="sudo vim /etc/hosts"
 alias vd="vimdiff"
 alias sudovim="sudo -H vim"
-alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
 
+vr() { vim -p $(grep -Rl $1) }
+vri() { vim -p $(grep -Ril $1) }
+
+alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
