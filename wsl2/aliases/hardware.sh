@@ -14,3 +14,6 @@ resize_ram() {
   df -h |grep /dev/shm
 }
 
+# network
+alias portcheck="netstat -lntp"
+

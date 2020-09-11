@@ -1,56 +1,97 @@
 [core]
   pager="less -RFX"
   editor=vim
-  excludesfile = ~/.gitignore
+  excludesfile="~/.gitignore"
+[http]
+  sslVerify=false
+[credential]
+  helper=cache
 [diff]
   compactionHeuristic=true
+[merge]
+  tool=vimdiff
+  keepBackup=false
+[push]
+  default=simple
+#[filter "largefile"]
+#  clean = store-largefile.py
+#  smudge = load-largefile.py
+[filter "lfs"]
+  clean="git lfs clean %f"
+  smudge="git lfs smudge %f"
+  require=true
 [color]
   status=auto
   diff=auto
-  ui = true
-[push]
-  default = simple
+  ui=true
 [alias]
+
   a="add -A"
   aa="add -A ."
   au="add -u"
+
   b="branch"
   ba="branch -a"
   br="branch -r"
+
   c="commit"
+  cm="commit -m"
   ca="commit --amend"
+  ch="commit -C HEAD --amend"
+
   cl="clone"
   cld="clone --depth"
   cl1="clone --depth 1"
-  ch="commit -C HEAD --amend"
-  cm="commit -m"
+
   cp="cherry-pick"
+  cp-continue="cherry-pick --continue"
+  cp-abort="cherry-pick --abort"
+
   d="diff"
   dn="diff --name-only"
   ds="diff --stat --name-only"
+  dfa="diff --diff-filter=A"
+  dfc="diff --diff-filter=C"
+  dfd="diff --diff-filter=D"
+  dfm="diff --diff-filter=M"
+  dfr="diff --diff-filter=R"
+
   dc="diff --cached"
+  dcn="diff --cached --name-only"
   dcs="diff --cached --stat --name-only"
-  da="diff --diff-filter=A" #追加
-  # dc="diff --diff-filter=C" #コピー
-  dd="diff --diff-filter=D" #削除
-  dm="diff --diff-filter=M" #マージ(更新)
-  dr="diff --diff-filter=R" #リネーム
+  dcfa="diff --cached --diff-filter=A"
+  dcfc="diff --cached --diff-filter=C"
+  dcfd="diff --cached --diff-filter=D"
+  dcfm="diff --cached --diff-filter=M"
+  dcfr="diff --cached --diff-filter=R"
+
   f="fetch"
+
   fs="fsck"
+
   gc="gc"
+
   l="log --graph --no-merges"
   lg="log --graph"
   ls="log --graph --stat --no-merges"
   l1="log --oneline --no-merges"
+
   m="merge"
   m-squash="merge --squash"
   m-abort="merge --abort"
+
   o="checkout"
   om="checkout master"
+  left="checkout --ours"
+  ours="checkout --ours"
+  right="checkout --theirs"
+  theirs="checkout --theirs"
+
   p="pull"
   pr="pull --rebase"
   pq="pull-request"
   pp="pull origin master"
+
   r="reset"
   rs="reset --soft"
   rs1="reset --soft HEAD^"
@@ -60,13 +101,24 @@
   rh1="reset --hard HEAD^"
   rh2="reset --hard HEAD~2"
   rh3="reset --hard HEAD~3"
+
   s="status"
+
   t="tag"
+
   u="push"
   uu="push origin master"
   uh="push heroku master"
+
   w="show"
-  ws="show --stat --name-only"
+  wn="show --name-only"
+  ws="show --stat"
+  wa="show --diff-filter=A"
+  wc="show --diff-filter=C"
+  wd="show --diff-filter=D"
+  wm="show --diff-filter=M"
+  wr="show --diff-filter=R"
+
   mod="submodule"
   modadd="submodule add"
   moda="submodule add"
@@ -74,38 +126,21 @@
   modi="submodule update --init"
   modpull="submodule foreach git pull origin master"
   modp="submodule foreach git pull origin master"
-  left="checkout --ours"
-  ours="checkout --ours"
-  right="checkout --theirs"
-  theirs="checkout --theirs"
-  cp-continue="cherry-pick --continue"
-  cp-abort="cherry-pick --abort"
+
   rb="rebase"
   rbi="rebase -i"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
+
   rv="revert"
   rv-no-edit="revert --no-edit"
   rv-continue="revert --continue"
   rv-abort="revert --abort"
+
   apply="stash apply"
   pop="stash pop"
   clear="stash clear"
   drop="stash drop"
   list="stash list"
   view="stash show -p"
-#[filter "largefile"]
-#  clean = store-largefile.py
-#  smudge = load-largefile.py
-[filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
-[http]
-  sslVerify = false
-[credential]
-  helper = cache
-[merge]
-  tool = vimdiff
-  keepBackup = false
 
