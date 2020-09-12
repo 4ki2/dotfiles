@@ -19,8 +19,8 @@ export BUNDLER_EDITOR=vim
 
 # go for apt install (ref: go env)
 export GOROOT=/usr/lib/go
-export GOPATH=$GOROOT/bin
-export PATH="${PATH}:${GOPATH}"
+export GOPATH=$HOME/.go
+export PATH="${PATH}:${GOPATH}/bin"
 
 export GITHUB_REPOS_PATH=/opt/github
 
