@@ -6,5 +6,6 @@ alias winmerge="WinMergeU.exe"
 alias wtail="tail ---disable-inotify"
 
 # wsl reboot
-alias reboot="wsl -t Ubuntu"
+alias reboot="wsl --shutdown"
+#alias reboot="wsl -t Ubuntu"
 
