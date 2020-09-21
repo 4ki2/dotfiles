@@ -32,12 +32,12 @@ alias configurevim="./configure \
 --disable-smack  \
 --disable-selinux  \
 --disable-xsmp  \
---enable-python3interp=yes  \
---enable-luainterp=yes  \
---enable-cscope  \
 --disable-netbeans  \
+--enable-gui=no \
+--enable-python3interp \
+--enable-luainterp \
+--enable-cscope  \
 --enable-multibyte  \
 --enable-fontset  \
---enable-gui=no \
 --with-features=huge"
 

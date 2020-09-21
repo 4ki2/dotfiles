@@ -69,7 +69,7 @@
 
   fs="fsck"
 
-  gc="gc"
+  gc="gc --prune=now"
 
   l="log --graph --no-merges"
   lg="log --graph"

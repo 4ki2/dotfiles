@@ -26,6 +26,7 @@ if [ ! -h ~/.oh-my-zsh ]; then
   ln -s $(pwd) ~/.oh-my-zsh
   cd custom/plugins
   ln -s $(readlink -f ../../../zsh-autosuggestions)
+  cd -
   cd custom/themes
   ln -s $(readlink -f ../../../bullet-train.zsh/bullet-train.zsh-theme)
 fi
