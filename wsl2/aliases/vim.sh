@@ -25,7 +25,7 @@ alias vd="vimdiff"
 vr() { vim -p $(grep -Rl $1) }
 vri() { vim -p $(grep -Ril $1) }
 
-alias less=$GITHUB_REPOS_PATH/vim/runtime/macros/less.sh
+alias less=$GITHUB_REPOS_PATH/vim/vim/runtime/macros/less.sh
 
 alias configurevim="./configure \
 --disable-darwin \

@@ -4,6 +4,7 @@
   excludesfile="~/.gitignore"
 [http]
   sslVerify=false
+  cookiefile = /root/.gitcookies
 [credential]
   helper=cache
 [diff]
@@ -69,7 +70,8 @@
 
   fs="fsck"
 
-  gc="gc --prune=now"
+  gc="gc --auto"
+  gcp="gc --prune=now"
 
   l="log --graph --no-merges"
   lg="log --graph"
