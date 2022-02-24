@@ -18,9 +18,13 @@ export SVN_EDITOR=vim
 export BUNDLER_EDITOR=vim
 
 # go for apt install (ref: go env)
-export GOROOT=/usr/lib/go
+#export GOROOT=/usr/lib/go
 export GOPATH=$HOME/.go
 export PATH="${PATH}:${GOPATH}/bin"
 
 export GITHUB_REPOS_PATH=/opt/github
+
+export CLOUDSDK_PYTHON=/usr/bin/python3
+
+export GOOGLE_APPLICATION_CREDENTIALS=/root/application_default_credentials.json
 

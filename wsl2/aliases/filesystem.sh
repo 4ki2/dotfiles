@@ -72,3 +72,4 @@ alias links="find . -type l"
 # -w=overwrite
 alias nkf="nkf -w --no-best-fit-chars"
 
+alias da="direnv allow"

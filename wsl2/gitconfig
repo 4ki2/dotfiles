@@ -40,6 +40,8 @@
   ca="commit --amend"
   ch="commit -C HEAD --amend"
 
+  ccexit="credential-cache exit"
+
   cl="clone"
   cld="clone --depth"
   cl1="clone --depth 1"
@@ -50,12 +52,14 @@
 
   d="diff"
   dn="diff --name-only"
-  ds="diff --stat --name-only"
+  ds="diff --stat"
   dfa="diff --diff-filter=A"
   dfc="diff --diff-filter=C"
   dfd="diff --diff-filter=D"
   dfm="diff --diff-filter=M"
   dfr="diff --diff-filter=R"
+  w1="diff --name-only HEAD~"
+  w2="diff --name-only HEAD~~"
 
   dc="diff --cached"
   dcn="diff --cached --name-only"
@@ -72,6 +76,7 @@
 
   gc="gc --auto"
   gcp="gc --prune=now"
+  gca="gc --aggressive"
 
   l="log --graph --no-merges"
   lg="log --graph"
@@ -130,9 +135,9 @@
   modp="submodule foreach git pull origin master"
 
   rb="rebase"
-  rbi="rebase -i"
   rb-continue="rebase --continue"
   rb-abort="rebase --abort"
+  combine="rebase -i"
 
   rv="revert"
   rv-no-edit="revert --no-edit"
@@ -143,6 +148,11 @@
   pop="stash pop"
   clear="stash clear"
   drop="stash drop"
+  ll="stash list"
   list="stash list"
   view="stash show -p"
+  stash-unstaged="stash --keep-index"
+  stash-untracked = "!f(){ git stash; git stash -u; git stash pop stash@{1}; }; f"
+
+  svn-pull="svn rebase"
 

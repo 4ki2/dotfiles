@@ -22,3 +22,4 @@ alias gdd="g reflog expire --expire=now --all; g gc --prune=now"
 # remnove ghostscript
 alias gs="git status"
 
+alias gtrace="GIT_TRACE=1 GIT_TRACE_PERFORMANCE=1 git status --porcelain -b"
