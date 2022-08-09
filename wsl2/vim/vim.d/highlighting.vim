@@ -1,7 +1,7 @@
 syntax on
 
-set list
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+"# set list
+"# set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 "# 全角
 function! ZenkakuSpace()
