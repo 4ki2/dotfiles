@@ -17,10 +17,10 @@
 #[filter "largefile"]
 #  clean = store-largefile.py
 #  smudge = load-largefile.py
-[filter "lfs"]
-  clean="git lfs clean %f"
-  smudge="git lfs smudge %f"
-  require=true
+# [filter "lfs"]
+#   clean="git lfs clean %f"
+#   smudge="git lfs smudge %f"
+#   require=true
 [color]
   status=auto
   diff=auto
