@@ -1,9 +1,3 @@
-[submodule "submodules/dein.vim"]
-	path = submodules/dein.vim
-	url = https://github.com/Shougo/dein.vim.git
-[submodule "submodules/hub"]
-	path = submodules/hub
-	url = https://github.com/github/hub.git
 [submodule "submodules/oh-my-zsh"]
 	path = submodules/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
@@ -13,3 +7,6 @@
 [submodule "submodules/zsh-autosuggestions"]
 	path = submodules/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "submodules/asdf"]
+	path = submodules/asdf
+	url = https://github.com/asdf-vm/asdf.git

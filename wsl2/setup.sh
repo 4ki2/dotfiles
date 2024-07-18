@@ -3,7 +3,6 @@ for f in `cat <<_END_OF_FILES_
 env
 gitconfig
 gitignore
-vimrc
 zshrc
 _END_OF_FILES_`; do
   rm -f ~/.$f
@@ -11,15 +10,23 @@ _END_OF_FILES_`; do
 done
 for d in `cat <<_END_OF_DIRS_
 aliases
-vim
 zsh
 _END_OF_DIRS_`; do
   rm -rf ~/.$d
   ln -s $PWD/$d ~/.$d
 done
 
-rm -f ~/.ssh/config
-ln -s $PWD/ssh_config ~/.ssh/config
+mkdir -p ~/.config
+rm -rf ~/.config/nvim
+ln -s $PWD/nvim ~/.config/nvim
+
+# rm -f ~/.ssh/config
+# ln -s $PWD/ssh_config ~/.ssh/config
+
+if [ ! -h ~/.asdf ]; then
+  cd ../submodules/asdf
+  ln -s $(pwd) ~/.asdf
+fi
 
 if [ ! -h ~/.oh-my-zsh ]; then
   cd ../submodules/oh-my-zsh

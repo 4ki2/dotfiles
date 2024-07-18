@@ -17,6 +17,7 @@ vim.opt.smarttab = true
 vim.opt.cindent = true
 vim.opt.expandtab = false
 vim.opt.filetype = 'plugin', 'indent', 'on'
+vim.opt.mouse=''
 
 -- hit tab key insert indent
 key('n', '<Tab>', '>>', { silent = true, noremap = true })

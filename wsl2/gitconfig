@@ -2,6 +2,8 @@
   pager="less -RFX"
   editor=vim
   excludesfile="~/.gitignore"
+  autocrlf=false
+#  whitespace=cr-at-eol
 [http]
   sslVerify=false
   cookiefile = /root/.gitcookies
@@ -14,13 +16,14 @@
   keepBackup=false
 [push]
   default=simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 #[filter "largefile"]
 #  clean = store-largefile.py
 #  smudge = load-largefile.py
-# [filter "lfs"]
-#   clean="git lfs clean %f"
-#   smudge="git lfs smudge %f"
-#   require=true
 [color]
   status=auto
   diff=auto
