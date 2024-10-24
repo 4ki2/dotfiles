@@ -8,7 +8,7 @@
   sslVerify=false
   cookiefile = /root/.gitcookies
 [credential]
-  helper=cache
+	helper="cache --timeout=604800"
 [diff]
   compactionHeuristic=true
 [merge]
