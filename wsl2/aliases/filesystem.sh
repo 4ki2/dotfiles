@@ -36,7 +36,7 @@ alias ll="ls -alh"
 alias l1="ls -a1"
 
 # archive
-alias tgz="tar cz --exclude-vcs"
+alias tgz="tar cz --exclude-vcs-ignores"
 
 # clear
 alias cl=clear
