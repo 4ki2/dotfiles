@@ -16,6 +16,10 @@ now, only use on `wsl2` (ubuntu)
     sudo apt upgrade
     sudo apt install build-essential zsh direnv golang language-pack-ja
     ```
+1. install asdf
+    ```shell
+    go install github.com/asdf-vm/asdf/cmd/asdf@latest
+    ```
 1. checkout
     ```shell
     git clone git@github.com:4ki2/dotfiles.git
@@ -31,11 +35,11 @@ now, only use on `wsl2` (ubuntu)
     ```shell
     asdf plugin add neovim
     asdf install neovim stable
-    asdf global neovim stable
+    asdf set neovim stable
     ```
     ```shell
     asdf plugin add nodejs
-    asdf nodejs update-nodebuild
-    asdf install nodejs `asdf nodejs resolve lts --latest-available`
-    asdf global nodejs `asdf nodejs resolve lts --latest-available`
+    asdf cmd nodejs update-nodebuild
+    asdf install nodejs `asdf cmd nodejs resolve lts`
+    asdf set nodejs `asdf cmd nodejs resolve lts`
     ```

@@ -109,7 +109,7 @@ BULLETTRAIN_PROMPT_ORDER=(
   # perl
   # ruby
   # virtualenv
-  # nvm
+  nvm
   aws
   go
   # rust
@@ -145,9 +145,7 @@ if [ -f ~/.secrets ]; then
 fi
 
 # append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+fpath=(${ASDF_DATA_DIR}/completions $fpath)
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
-
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
