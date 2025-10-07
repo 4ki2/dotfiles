@@ -1,11 +1,11 @@
 local is_vscode = vim.g.vscode == 1
 local key = vim.keymap.set
 
-if is_vscode then
-  key('n', '<Space>c', ":call VSCodeNotify('workbench.action.closeOtherEditors')<CR>")
-else
-  key('n', '<Space>c', ":BufferCloseAllButVisible<CR>")
-end
+-- if is_vscode then
+--   key('n', '<Space>c', ":call VSCodeNotify('workbench.action.closeOtherEditors')<CR>")
+-- else
+--   key('n', '<Space>c', ":BufferCloseAllButVisible<CR>")
+-- end
 
 vim.opt.ignorecase = true
 vim.opt.autoindent = true
@@ -17,7 +17,9 @@ vim.opt.smarttab = true
 vim.opt.cindent = true
 vim.opt.expandtab = false
 vim.opt.filetype = 'plugin', 'indent', 'on'
-vim.opt.mouse=''
+vim.opt.mouse = ''
+vim.opt.fixeol = false
+vim.opt.fixendofline = false
 
 -- hit tab key insert indent
 key('n', '<Tab>', '>>', { silent = true, noremap = true })

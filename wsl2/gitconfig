@@ -154,8 +154,13 @@
   ll="stash list"
   list="stash list"
   view="stash show -p"
-  stash-unstaged="stash --keep-index"
-  stash-untracked = "!f(){ git stash; git stash -u; git stash pop stash@{1}; }; f"
+  unstaged="stash --keep-index"
+  untracked = "!f(){ git stash; git stash -u; git stash pop stash@{1}; }; f"
 
   svn-pull="svn rebase"
+
+	wt="worktree list"
+	wta="worktree add"
+	wtp="worktree prune"
+	wtr="worktree remove"
 

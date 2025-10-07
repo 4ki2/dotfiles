@@ -149,3 +149,5 @@ fpath=(${ASDF_DATA_DIR}/completions $fpath)
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
+. "$HOME/.local/bin/env"
